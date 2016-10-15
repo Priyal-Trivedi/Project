@@ -83,19 +83,19 @@
             <div class=for-buttons">
       <p>
 
-          <a href="#" class="btn btn-sq btn-info">1</a>
-          <a href="#" class="btn btn-primary">2</a>
-          <a href="#" class="btn btn-primary">3</a>
-          <a href="#" class="btn btn-primary">4</a>
-          <a href="#" class="btn btn-primary">5</a>
-          <a href="#" class="btn btn-primary">6</a>
-          <a href="#" class="btn btn-sq btn-info">1</a>
-          <a href="#" class="btn btn-primary">2</a>
-          <a href="#" class="btn btn-primary">3</a>
-          <a href="#" class="btn btn-primary">4</a>
-          <a href="#" class="btn btn-primary">5</a>
-          <a href="#" class="btn btn-sq btn-info">1</a>
-          <a href="#" class="btn btn-primary">2</a>
+          <a href="#" class="btn btn-sq btn-info" id="btn_1_big" >1</a>
+          <a href="#" class="btn btn-primary" id="btn_2">2</a>
+          <a href="#" class="btn btn-primary" id="btn_3">3</a>
+          <a href="#" class="btn btn-primary" id="btn_4">4</a>
+          <a href="#" class="btn btn-primary" id="btn_5">5</a>
+          <a href="#" class="btn btn-primary" id="btn_6" >6</a>
+          <a href="#" class="btn btn-sq btn-info" id="btn_7_big">1</a>
+          <a href="#" class="btn btn-primary" id="btn_7" >2</a>
+          <a href="#" class="btn btn-primary" id="btn_8">3</a>
+          <a href="#" class="btn btn-primary" id="btn_9">4</a>
+          <a href="#" class="btn btn-primary" id="btn_10">5</a>
+          <a href="#" class="btn btn-sq btn-info" id="btn_11">1</a>
+          <a href="#" class="btn btn-primary" id="btn_12">2</a>
           <a href="#" class="btn btn-primary">3</a>
           <a href="#" class="btn btn-primary">4</a>
           <a href="#" class="btn btn-primary">5</a>
@@ -294,7 +294,13 @@
 
     </div>
 
+{% block scripts%}
 
+
+<script type="text/javascript" src="{% static 'frontend/js/frontend.js' %}"></script>
+
+
+{% endblock scripts %}
    <!-- <div class="container">
 
         <div class="row">
