@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
 from forms import DesignChoiceForm
-from constants import STEPS
+from constants import STEPS_NAME, STEPS_METHODS
 from forms import DOMAIN_CHOICES, PROBLEM_TYPE_CHOICES, TBL_CHOICES
 # Create your views here.
 
@@ -81,8 +81,16 @@ def next_step(request):
         request_parameters = dict(request.POST)
         print request_parameters
         step = request_parameters.get('step')[0]
-        step_info = STEPS[step]
 
+        tbl_scope = request_parameters.get('tbl_scope')[0]
+        domain = request_parameters.get('domain')[0]
+        problem_type = request_parameters.get('problem_type')[0]
+
+        step_info = STEPS_NAME[step]
+        context_info = STEPS_METHODS[step]({'step':step, 'tbl_scope': tbl_scope, 'domain': domain,
+                                      'problem_type': problem_type})
+
+        print context_info
         return HttpResponse(json.dumps({"step_info": step_info}), content_type="application/json")
 
 

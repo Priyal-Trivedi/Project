@@ -16,14 +16,12 @@ $("#btn_2").click(function() {
 $("#btn_3").click(function() {
   alert( "Button with id btn_3 is clicked." );
 });
-
 var step = 0;
-$("#next_step").click(function() {
+function next_steps(domain, tbl_scope, problem_type) {
 
-  console.log(step);
 
   var url = '/next_step/';
-  data = {'step': step };
+  data = {'step': step, 'domain': domain, 'tbl_scope': tbl_scope, 'problem_type': problem_type };
 
     $.ajax({
         url: url,
@@ -49,7 +47,9 @@ $("#next_step").click(function() {
         }
     });
 
-});
+}
+
+
 
 
 
