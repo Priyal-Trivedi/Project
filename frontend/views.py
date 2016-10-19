@@ -1,8 +1,12 @@
+import json
+
+from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 
 from forms import DesignChoiceForm
-
+from constants import STEPS
 from forms import DOMAIN_CHOICES, PROBLEM_TYPE_CHOICES, TBL_CHOICES
 # Create your views here.
 
@@ -61,6 +65,25 @@ def design_methods(request):
             # ...
             # redirect to a new URL:
             return render(request, 'design_methods.html')
+
+@csrf_exempt
+def next_step(request):
+    """
+
+    :param request:
+    :return:
+    """
+
+    if request.POST or request.is_ajax():
+        """
+        processing POST request or ajax request
+        """
+        request_parameters = dict(request.POST)
+        print request_parameters
+        step = request_parameters.get('step')[0]
+        step_info = STEPS[step]
+
+        return HttpResponse(json.dumps({"step_info": step_info}), content_type="application/json")
 
 
 def instructions(request):

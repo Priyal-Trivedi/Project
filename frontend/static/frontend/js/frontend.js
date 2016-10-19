@@ -17,4 +17,40 @@ $("#btn_3").click(function() {
   alert( "Button with id btn_3 is clicked." );
 });
 
+var step = 0;
+$("#next_step").click(function() {
+
+  console.log(step);
+
+  var url = '/next_step/';
+  data = {'step': step };
+
+    $.ajax({
+        url: url,
+        crossDomain: true,
+        type: 'POST',
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        dataType: 'json',
+        data: data,
+        beforeSend: function(jqXHR, settings) {
+
+        },
+        success: function(data, textStatus, jqXHR) {
+          console.log("Success", data);
+          $("#step_info").html("<p>"+data['step_info']+"</p>");
+            step += 1;
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log("Failed");
+        },
+        complete: function(jqXHR, textStatus) {
+            console.log("Completed")
+
+        }
+    });
+
+});
+
+
+
 // Making an ajax call to a view in python and then loading an html.
