@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 from forms import DesignChoiceForm
 
-
+from forms import DOMAIN_CHOICES, PROBLEM_TYPE_CHOICES, TBL_CHOICES
 # Create your views here.
 
 def home(request):
@@ -24,7 +24,19 @@ def design(request):
             # process the data in form.cleaned_data as required
             # ...
             # redirect to a new URL:
-            return HttpResponseRedirect('/design_methods/')
+            request_parameters = dict(request.POST)
+            problem_type = request_parameters.get('problem_type')[0]
+            problem_type = dict(PROBLEM_TYPE_CHOICES).get(problem_type)
+
+            tbl_scope = request_parameters.get('triple_bottom_line')[0]
+            tbl_scope = dict(TBL_CHOICES).get(tbl_scope)
+
+            domain = request_parameters.get('domain')[0]
+            domain = dict(DOMAIN_CHOICES).get(domain)
+
+            return render(request, 'design_methods.html', {'problem_type': problem_type,
+                                                           'tbl_scope': tbl_scope,
+                                                           'domain': domain})
         else:
             form = DesignChoiceForm()
     else:

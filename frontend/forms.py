@@ -2,8 +2,9 @@ __author__ = 'priyanktrivedi'
 from django import forms
 
 PROBLEM_TYPE_CHOICES = [("product", "Product"), ("manufacturing", "Manufacturing Systems"), ("services", "Services")]
-TBL_CHOICES = [("environment", "Environment"), ("society", "Society"), ("economy", "Economy")]
-DOMAIN_CHOICES = [("environment", "Domain Choice 1"), ("society", "Domain Choice 2"), ("economy", "Domain Choice 3")]
+TBL_CHOICES = [("Environmental", "Environmental"), ("Social", "Social"), ("Economic", "Economic")]
+DOMAIN_CHOICES = [("product", "Product"), ("manufacturing_system", "Manufacturing Systems"),
+                  ("service", "Service")]
 
 
 class DesignChoiceForm(forms.Form):
