@@ -91,7 +91,7 @@ def next_step(request):
                                       'problem_type': problem_type})
 
         print context_info
-        return HttpResponse(json.dumps({"step_info": step_info}), content_type="application/json")
+        return HttpResponse(json.dumps({"step_info": step_info, 'context_info': context_info}), content_type="application/json")
 
 
 def instructions(request):

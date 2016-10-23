@@ -35,6 +35,9 @@ function next_steps(domain, tbl_scope, problem_type) {
         },
         success: function(data, textStatus, jqXHR) {
           console.log("Success", data);
+
+            $("#content").html(data["context_info"]);
+
           $("#step_info").html("<p>"+data['step_info']+"</p>");
             step += 1;
         },
