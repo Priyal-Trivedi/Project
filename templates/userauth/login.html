@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Indeate</title>
+
+    {% load static %}
+    {% block scripts %}
+
+{#        <script src="{% static 'zenauth/js/login.js' %}"></script>#}
+
+
+    {% endblock %}
+
+{#    {% if favicon %}#}
+{#        <link rel="shortcut icon" type="image/png" href='/media/{{ favicon }}'/>#}
+{##}
+{#    {% else %}#}
+{#        <link rel="shortcut icon" type="image/png" href="{% static 'frontend/img/favicon.ico' %}"/>#}
+{##}
+{#    {% endif %}#}
+{#    <link href="{% static 'zenauth/css/login-style.css' %}" media="screen" rel="stylesheet"/>#}
+{#    <link href="{% static 'zenauth/css/login.css' %}" media="screen" rel="stylesheet"/>#}
+</head>
+<body>
+<div class="contents">
+
+{#    {% if nav_bar_logo %}#}
+{#        <a class="navbar-brand" href="/">#}
+{##}
+{#            <img class="logo" src="/media/{{ nav_bar_logo }}">#}
+{#        </a>#}
+{#    {% else %}#}
+{#        <a class="navbar-brand" href="/">#}
+{##}
+{#            <img class="logo" src={% static "frontend/img/zenatix-logo-whitepng" %}>#}
+{#        </a>#}
+{#    {% endif %}#}
+
+
+
+    <div>
+
+        <form method="post" action="/login/" class="login" autocomplete="off">
+            {% csrf_token %}
+            <p>
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="login" value="">
+            </p>
+
+            <p>
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" value="">
+            </p>
+
+            <p class="login-submit">
+                <button type="submit" value="login" class="login-button">Login</button>
+            </p>
+
+            <div class="signed-in">
+                <label>
+                    <input name="remember_me" type="checkbox">Keep me signed in</label>
+
+                <a class="forgot-password" href="javascript:{}" onclick="forgot_password();">Forgot your password?</a>
+
+            </div>
+        </form>
+
+        <form id="forgot_form" action="/forgot_password/" method="post">
+            {% csrf_token %}
+            <input type="hidden" id="forgot_login" name="username">
+
+        </form>
+    </div>
+</div>
+</body>
+</html>

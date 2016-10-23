@@ -12,7 +12,10 @@ from forms import DOMAIN_CHOICES, PROBLEM_TYPE_CHOICES, TBL_CHOICES
 
 def home(request):
     print "Here"
-    return render(request, 'index.html')
+    if request.user.is_authenticated():
+        return render(request, 'index.html')
+    else:
+        return render(request, 'userauth/login.html')
 
 
 def data(request):
