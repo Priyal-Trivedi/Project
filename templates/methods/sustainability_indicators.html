@@ -1,0 +1,65 @@
+
+{% load static %}
+{% block stylesheets %}
+    <style>
+    #rcorners2 {
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+    padding: 20px;
+    width: 200px;
+    height: 150px;
+}
+    </style>
+<link rel="stylesheet" src={% static 'css/bootstrap-multiselect.css' %} type="text/css"/>
+{% endblock %}
+<div class="row">
+
+
+    <div class="row">
+
+        <div class="col-md-8">
+
+            <p> The chosen sustainability definitions/principles filters the respective sustainability indicators.</p>
+        </div>
+
+    </div>
+
+    <div class="col-lg-8 rcorners2">
+        <div class="row">
+            <div class="col-lg-8">
+                <h3> Select Sustainability Indicators</h3>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+
+                    <!-- Iterate over names and show information of selected names -->
+             <div class="col-lg-4">
+    <select id="example-getting-started" multiple="multiple" >
+        {% for indicator in indicators %}
+                        <option value="{{ indicator }}">{{ indicator }}</option>
+        {% endfor %}
+
+    </select>
+        </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block scripts %}
+<script type="text/javascript" src={% static 'js/bootstrap-multiselect.js' %}></script>
+
+
+    <!-- Initialize the plugin: -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#example-getting-started').multiselect();
+        });
+    </script>
+
+
+
+{% endblock %}

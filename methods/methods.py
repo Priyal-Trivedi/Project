@@ -65,5 +65,11 @@ def select_sustainability_indicators(data):
     :param data:
     :return:
     """
+    html_template = get_template("methods/sustainability_indicators.html")
 
-    return {"4": 4}
+    names = [each["name"] for each in definitions]
+
+    context = Context({"indicators": names})
+    sustainability_indicators_html = html_template.render(context)
+    return sustainability_indicators_html
+
