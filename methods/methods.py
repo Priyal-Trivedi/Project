@@ -73,3 +73,16 @@ def select_sustainability_indicators(data):
     sustainability_indicators_html = html_template.render(context)
     return sustainability_indicators_html
 
+def select_methods_tc(data):
+    """
+
+    :param data:
+    :return:
+    """
+    html_template = get_template("methods/select_methods.html")
+
+    names = [each["name"] for each in definitions]
+
+    context = Context({"indicators": names})
+    select_methods_tc = html_template.render(context)
+    return select_methods_tc
