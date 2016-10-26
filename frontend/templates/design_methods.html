@@ -201,7 +201,7 @@
                 <div class="col-md-12">
 
 
-                 <img id="myImg" src='{% static 'frontend/GEMS.jpg' %}'  alt="GEMS" align="right" width="150" height="100"  >
+
 
             <!-- The Modal -->
                 <div id="myModal" class="modal">
@@ -212,27 +212,25 @@
 <div class="row">
     <div class="col-lg-3">
 
-    <p> <h4>Problem Type</h4> : {{ problem_type }} </p>
+    <p> <h6>Problem Type : {{ problem_type }}</h6> </p>
 
     </div>
 
 <div class="col-lg-3">
 
-    <p> <h4> Triple Bottom Line </h4> : {{ tbl_scope }} </p>
+    <p> <h6> Triple Bottom Line  : {{ tbl_scope }}</h6> </p>
 
     </div>
 
     <div class="col-lg-3">
 
-    <p> <h4> Domain </h4>: {{ domain }} </p>
+    <p> <h6> Domain : {{ domain }}</h6> </p>
 
     </div>
 
     </div>
-
-
                     <hr>
-
+  <img id="myImg" src='{% static 'frontend/GEMS.jpg' %}'  alt="GEMS" align="right" width="150" height="100"  >
       <p>
           <a href="#" class="btn btn-default btn-circle " id="btn_0" >1</a>
           <a href="#" class="btn btn-sq btn-info" id="btn_1_big" >1</a>
