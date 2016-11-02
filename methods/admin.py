@@ -32,8 +32,20 @@ class IndicatorsAdmin(admin.ModelAdmin):
 
     search_fields = ('tags','indicators', 'type')
 
+class ProceduresAdmin(admin.ModelAdmin):
+    """
+
+    """
+
+    list_display = ('name',)
+    fieldsets = (
+        (None, {'fields':('name', 'steps',)}),)
+
+    search_fields = ('name',)
+
 
 admin.site.register(Definitions, DefinitionsAdmin)
 admin.site.register(Indicators, IndicatorsAdmin)
+admin.site.register(Procedures, ProceduresAdmin)
 admin.site.register(Domain)
 admin.site.register(TBL_Scope)
