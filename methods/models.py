@@ -44,5 +44,18 @@ class Definitions(models.Model):
     remarks = models.TextField(null=True)
 
 
+class Indicators(models.Model):
+    """
+
+    """
+
+    tbl_scope = models.ForeignKey(TBL_Scope)
+    type = models.CharField(max_length=255)
+    indicator = models.CharField(max_length=255, null=True)
+    tags = models.CharField(max_length=255, null=True, blank=True)
+
+
+
+
 
 

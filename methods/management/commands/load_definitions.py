@@ -83,18 +83,13 @@ class Command(BaseCommand):
         """
 
         df = pd.read_csv("definitions.csv")
-        tbl_scope_objects = []
-        domains_objects = []
 
         for i in range(1,len(df.index)):
             row_dict = df.loc[i].to_dict()
-            print df.columns
 
             tbl_scopes = fetch_tbl_scopes(row_dict['tbl_scope'])
-            print tbl_scopes
 
             domains = fetch_domains(row_dict['domain'])
-            print type(domains)
 
             definition = Definitions.objects.create(name=row_dict['name'], definition=row_dict['definition'], link=row_dict['link'],
                                        remarks=row_dict['remarks'])
