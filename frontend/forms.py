@@ -1,10 +1,12 @@
 __author__ = 'priyanktrivedi'
 from django import forms
+from methods.models import Domain, TBL_Scope
 
 PROBLEM_TYPE_CHOICES = [("product", "Product"), ("manufacturing", "Manufacturing Systems"), ("services", "Services")]
-TBL_CHOICES = [("Environmental", "Environmental"), ("Social", "Social"), ("Economic", "Economic")]
-DOMAIN_CHOICES = [("product", "Product"), ("manufacturing_system", "Manufacturing Systems"),
-                  ("service", "Service")]
+
+TBL_CHOICES = [(tbl.tbl_scope, tbl.tbl_scope) for tbl in TBL_Scope.objects.all()]
+
+DOMAIN_CHOICES = [(domain, domain.domain) for domain in Domain.objects.all()]
 
 
 class DesignChoiceForm(forms.Form):

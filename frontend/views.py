@@ -11,7 +11,12 @@ from forms import DOMAIN_CHOICES, PROBLEM_TYPE_CHOICES, TBL_CHOICES
 # Create your views here.
 
 def home(request):
-    print "Here"
+    """
+
+    :param request:
+    :return:
+    """
+
     if request.user.is_authenticated():
         return render(request, 'index.html')
     else:
@@ -47,6 +52,9 @@ def design(request):
         else:
             form = DesignChoiceForm()
     else:
+        print "I'm here in get request"
+        #TODO : Fetch the step at which the user is currently now and then show the details of that step.
+
         form = DesignChoiceForm()
 
     return render(request, 'design.html', {"form": form})
@@ -93,7 +101,6 @@ def next_step(request):
         context_info = STEPS_METHODS[step]({'step':step, 'tbl_scope': tbl_scope, 'domain': domain,
                                       'problem_type': problem_type})
 
-        print context_info
         return HttpResponse(json.dumps({"step_info": step_info, 'context_info': context_info}), content_type="application/json")
 
 

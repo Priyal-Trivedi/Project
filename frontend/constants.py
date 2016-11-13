@@ -8,7 +8,6 @@ STEPS_NAME = {
     '3': "Select Sustainability Indicators",
     '4': "Select Methods TC in the task clarification phase",
 
-
 }
 
 STEPS_METHODS = {
