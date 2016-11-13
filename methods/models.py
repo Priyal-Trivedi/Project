@@ -63,3 +63,27 @@ class Procedures(models.Model):
     name = models.CharField(max_length=255)
     steps = models.TextField()
 
+
+class Methods(models.Model):
+    """
+
+    """
+
+    name = models.CharField(max_length=255)
+    problem = models.CharField(max_length=255, null=True, blank=True)
+    tbl_scope = models.ForeignKey(TBL_Scope, null=True, blank=True)
+    stage = models.CharField(max_length=255, null=True, blank=True)
+    lcp = models.CharField(max_length=255, null=True, blank=True)
+    activity = models.CharField(max_length=255, null=True, blank=True)
+    domain = models.CharField(max_length=255, null=True, blank=True)
+    time_scale = models.CharField(max_length=255, null=True, blank=True)
+    prerequisite = models.CharField(max_length=255, null=True, blank=True)
+    description = models.TextField()
+    input = models.CharField(max_length=255, null=True, blank=True)
+    procedure = models.TextField()
+    output = models.CharField(max_length=255, null=True, blank=True)
+    key_benefits = models.TextField()
+    shortcomings = models.CharField(max_length=255, null=True, blank=True)
+    example = models.TextField()
+    external_link = models.CharField(max_length=255, null=True, blank=True)
+    sources = models.CharField(max_length=255, null=True, blank=True)

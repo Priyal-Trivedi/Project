@@ -32,6 +32,22 @@ class IndicatorsAdmin(admin.ModelAdmin):
 
     search_fields = ('tags','indicators', 'type')
 
+
+class MethodsAdmin(admin.ModelAdmin):
+    """
+
+    """
+
+    list_display = ('name', 'problem', 'stage', )
+
+    fieldsets = (
+        (None, {'fields':('name', 'problem','tbl_scope', 'stage', 'lcp', 'activity', 'domain', 'time_scale',
+                          'prerequisite', 'description', 'input', 'procedure', 'output', 'key_benefits',
+                          'shortcomings', 'example', 'external_link', 'sources')}),)
+
+    search_fields = ('name','problem', 'stage')
+
+
 class ProceduresAdmin(admin.ModelAdmin):
     """
 
@@ -47,5 +63,6 @@ class ProceduresAdmin(admin.ModelAdmin):
 admin.site.register(Definitions, DefinitionsAdmin)
 admin.site.register(Indicators, IndicatorsAdmin)
 admin.site.register(Procedures, ProceduresAdmin)
+admin.site.register(Methods, MethodsAdmin)
 admin.site.register(Domain)
 admin.site.register(TBL_Scope)
