@@ -28,6 +28,13 @@ def data(request):
 
 
 def design(request):
+    """
+    Home for the user to choose domain, tbl_scope
+
+    :param request:
+    :return:
+    """
+    #TODO - Based on the step which is saved in indeateuser object's field, take user there.
     if request.method == "POST":
         # create a form instance and populate it with data from the request:
         form = DesignChoiceForm(request.POST)

@@ -6,7 +6,7 @@ PROBLEM_TYPE_CHOICES = [("product", "Product"), ("manufacturing", "Manufacturing
 
 TBL_CHOICES = [(tbl.tbl_scope, tbl.tbl_scope) for tbl in TBL_Scope.objects.all()]
 
-DOMAIN_CHOICES = [(domain, domain.domain) for domain in Domain.objects.all()]
+DOMAIN_CHOICES = [(domain.domain, domain.domain) for domain in Domain.objects.all()]
 
 
 class DesignChoiceForm(forms.Form):
