@@ -10,7 +10,7 @@
     height: 150px;
 }
     </style>
-<link rel="stylesheet" src={% static 'css/bootstrap-multiselect.css' %} type="text/css"/>
+
 {% endblock %}
 <div class="row">
 
@@ -24,18 +24,17 @@
 
     </div>
 
-    <div class="col-lg-8 rcorners2">
+    <div class="col-lg-11 rcorners2">
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-6">
                 <h3> Select Sustainability Definitions</h3>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-8">
 
                     <!-- Iterate over names and show information of selected names -->
-             <div class="col-lg-8">
+             <div class="col-lg-5">
 
 <table class="table table-bordered" id="definitions_table">
    <thead>
@@ -51,7 +50,7 @@
               <tr class="clickable-row" id="{{ name }}" data-name="{{ name }}">
      <td> <input type="checkbox" /></td> <td >{{ name }}</td>
   </tr>
-{#                        <option value="name">{{ name }}</option>#}
+
         {% endfor %}
 
 
@@ -59,29 +58,59 @@
 
 </table>
 
-{#    <select id="example-getting-started" multiple="multiple" style="wide">#}
-{##}
-{##}
-{##}
-{#    </select>#}
-        </div>
             </div>
+
+                     <div class="col-lg-7" id="definition_content">
+
+                        <h3>Some information of definitions. </h3>
+                    </div>
+
         </div>
     </div>
 </div>
 
 {% block scripts %}
-<script type="text/javascript" src={% static 'js/bootstrap-multiselect.js' %}></script>
+
 
 
     <!-- Initialize the plugin: -->
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#example-getting-started').multiselect();
+
 
             $(".clickable-row").click(function() {
                 console.log($(this).data("name"));
-                alert("Will fetch data for" + $(this).data("name"));
+
+                  var url = '/definitions_info/';
+                  data = {'name': $(this).data("name")};
+
+                    $.ajax({
+                        url: url,
+                        crossDomain: true,
+                        type: 'GET',
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        dataType: 'json',
+                        data: data,
+                        beforeSend: function(jqXHR, settings) {
+
+                        },
+                        success: function(data, textStatus, jqXHR) {
+                          console.log("Success", data);
+
+                            $("#definition_content").html(data["html"]);
+
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log("Failed");
+                        },
+                        complete: function(jqXHR, textStatus) {
+                            console.log("Completed")
+
+                        }
+                    });
+
+
+
     });
 
         });

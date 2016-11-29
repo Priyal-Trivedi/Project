@@ -3,12 +3,16 @@ import json
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.template import Context
+from django.template.loader import get_template
 from django.views.decorators.csrf import csrf_exempt
 
 from forms import DesignChoiceForm
 from constants import STEPS_NAME, STEPS_METHODS
 from forms import DOMAIN_CHOICES, PROBLEM_TYPE_CHOICES, TBL_CHOICES
 # Create your views here.
+from methods.models import Definitions
+
 
 def home(request):
     """
@@ -109,6 +113,28 @@ def next_step(request):
                                       'problem_type': problem_type})
 
         return HttpResponse(json.dumps({"step_info": step_info, 'context_info': context_info}), content_type="application/json")
+
+
+def definitions_info(request):
+    """
+
+    :param request:
+    :return:
+    """
+    if request.GET or request.is_ajax():
+        req_params = dict(request.GET)
+        print "I'm here"
+        print req_params
+        definition_name = req_params['name'][0]
+        definition_object = Definitions.objects.get(name=definition_name)
+        print definition_object
+
+        html_template = get_template("methods/definitions_info.html")
+
+        context = Context({"definition": definition_object})
+        sustainability_definitions_html = html_template.render(context)
+
+        return HttpResponse(json.dumps({"html": sustainability_definitions_html}), content_type="application/json")
 
 
 def instructions(request):

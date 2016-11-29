@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'^terminology/$', views.terminology),
     url(r'^design_methods/$', views.design_methods),
     url(r'^next_step/$', views.next_step),
+    url(r'^definitions_info/$', views.definitions_info),
     url(r'^contribute/$', views.contribute),
 ]
