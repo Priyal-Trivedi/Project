@@ -32,16 +32,38 @@
         </div>
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
 
                     <!-- Iterate over names and show information of selected names -->
-             <div class="col-lg-3">
-    <select id="example-getting-started" multiple="multiple" style="wide">
+             <div class="col-lg-8">
+
+<table class="table table-bordered" id="definitions_table">
+   <thead>
+    <tr>
+                   <tr>
+   <th></th> <th>Definitions</th>
+  </tr>
+   </thead>
+  <tbody>
+
+
         {% for name in names %}
-                        <option value="name">{{ name }}</option>
+              <tr class="clickable-row" id="{{ name }}" data-name="{{ name }}">
+     <td> <input type="checkbox" /></td> <td >{{ name }}</td>
+  </tr>
+{#                        <option value="name">{{ name }}</option>#}
         {% endfor %}
 
-    </select>
+
+</tbody>
+
+</table>
+
+{#    <select id="example-getting-started" multiple="multiple" style="wide">#}
+{##}
+{##}
+{##}
+{#    </select>#}
         </div>
             </div>
         </div>
@@ -56,6 +78,12 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#example-getting-started').multiselect();
+
+            $(".clickable-row").click(function() {
+                console.log($(this).data("name"));
+                alert("Will fetch data for" + $(this).data("name"));
+    });
+
         });
     </script>
 
