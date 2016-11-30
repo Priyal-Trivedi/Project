@@ -35,8 +35,34 @@
         <div class="row">
             <div class="col-md-6">
 
+                <table class="table table-bordered" id="indicators_table">
+   <thead>
+    <tr>
+                   <tr>
+   <th></th> <th>Indicators</th>
+  </tr>
+   </thead>
+  <tbody>
+
+
+        {% for indicator in names %}
+              <tr class="clickable-row" id="{{ indicator }}" data-name="{{ indicator }}">
+     <td> <input type="checkbox" /></td> <td >{{ Indicator }}</td>
+  </tr>
+
+        {% endfor %}
+
+
+</tbody>
+</table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
                     <!-- Iterate over names and show information of selected names -->
-             <div class="col-lg-4">
+            <!-- <div class="col-lg-4">
     <select id="example-getting-started" multiple="multiple" >
         {% for indicator in indicators %}
                         <option value="{{ indicator }}">{{ indicator }}</option>
@@ -48,17 +74,10 @@
         </div>
     </div>
 </div>
-
+-->
 {% block scripts %}
-<script type="text/javascript" src={% static 'js/bootstrap-multiselect.js' %}></script>
 
 
-    <!-- Initialize the plugin: -->
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#example-getting-started').multiselect();
-        });
-    </script>
 
 
 

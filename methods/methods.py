@@ -2,6 +2,7 @@ from django.template import Context
 from django.template.loader import get_template
 
 from utils import get_definitions
+from utils import get_indicators
 
 definitions = [
     {'id': 1, 'name': "World Bank", 'definition': """Sustainable development recognizes that growth must be both inclusive and environmentally sound to reduce poverty and build shared prosperity for todays population and to continue to meet the needs of future generations. It is efficient with resources and carefully planned to deliver both immediate and long-term benefits for people   planet   and prosperity.
@@ -53,7 +54,7 @@ def select_sustainability_definitions(data):
     domain = data.get('domain')
     tbl_scope = data.get('tbl_scope')
 
-    definitions = get_definitions(domain, tbl_scope)
+    definitions = get_definitions( domain, tbl_scope)
 
 
     html_template = get_template("methods/sustainability_definitions.html")
@@ -74,11 +75,18 @@ def select_sustainability_indicators(data):
     :param data:
     :return:
     """
+    print data
+
+
+    tbl_scope = data.get('tbl_scope')
+
+    indicators = get_indicators( tbl_scope)
+
     html_template = get_template("methods/sustainability_indicators.html")
 
-    names = [each["name"] for each in definitions]
+    names = [each.indicator for each in indicators]
 
-    context = Context({"indicators": names})
+    context = Context({"indicator": names})
     sustainability_indicators_html = html_template.render(context)
     return sustainability_indicators_html
 
@@ -90,7 +98,7 @@ def select_methods_tc(data):
     """
     html_template = get_template("methods/select_methods.html")
 
-    names = [each["name"] for each in definitions]
+    names = [each.name for each in definitions]
 
     context = Context({"indicators": names})
     select_methods_tc = html_template.render(context)

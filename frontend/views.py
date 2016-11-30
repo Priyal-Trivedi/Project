@@ -12,6 +12,7 @@ from constants import STEPS_NAME, STEPS_METHODS
 from forms import DOMAIN_CHOICES, PROBLEM_TYPE_CHOICES, TBL_CHOICES
 # Create your views here.
 from methods.models import Definitions
+from methods.models import Indicators
 
 
 def home(request):
