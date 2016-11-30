@@ -49,7 +49,7 @@ def select_sustainability_definitions(data):
     :param data:
     :return:
     """
-    print data
+
     problem_type = data.get('problem_type')
     domain = data.get('domain')
     tbl_scope = data.get('tbl_scope')
@@ -80,13 +80,11 @@ def select_sustainability_indicators(data):
 
     tbl_scope = data.get('tbl_scope')
 
-    indicators = get_indicators( tbl_scope)
+    indicators = get_indicators(tbl_scope)
 
     html_template = get_template("methods/sustainability_indicators.html")
 
-    names = [each.indicator for each in indicators]
-
-    context = Context({"indicator": names})
+    context = Context({"indicators": indicators})
     sustainability_indicators_html = html_template.render(context)
     return sustainability_indicators_html
 
