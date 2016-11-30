@@ -2,7 +2,7 @@ from django.template import Context
 from django.template.loader import get_template
 
 from utils import get_definitions
-from utils import get_indicators
+from utils import get_indicators, get_indicator_type
 
 definitions = [
     {'id': 1, 'name': "World Bank", 'definition': """Sustainable development recognizes that growth must be both inclusive and environmentally sound to reduce poverty and build shared prosperity for todays population and to continue to meet the needs of future generations. It is efficient with resources and carefully planned to deliver both immediate and long-term benefits for people   planet   and prosperity.
@@ -75,16 +75,14 @@ def select_sustainability_indicators(data):
     :param data:
     :return:
     """
-    print data
-
 
     tbl_scope = data.get('tbl_scope')
 
-    indicators = get_indicators(tbl_scope)
+    types = get_indicator_type(tbl_scope)
 
     html_template = get_template("methods/sustainability_indicators.html")
 
-    context = Context({"indicators": indicators})
+    context = Context({"types": types, "tbl_scope": tbl_scope})
     sustainability_indicators_html = html_template.render(context)
     return sustainability_indicators_html
 

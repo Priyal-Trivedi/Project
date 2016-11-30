@@ -265,11 +265,12 @@
 
                 <div class="along-side">
                    <dl class="list-features">
-                    <dt><i class="icon "></i></dt>
-                     <dt><i class="icon "></i> </dt>
-                       <dt><i class="icon "></i> </dt>
-                       <dt><i class="icon "></i> </dt>
-                       <dt><i class="icon "></i> </dt>
+                    <dt id="material" data-name="Material" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'material')"><i class="icon "></i></dt>
+                     <dt id="production" data-name="Production" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'production')"><i class="icon "></i> </dt>
+                     <dt id="assembly" data-name="Assembly" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'assembly')"><i class="icon "></i> </dt>
+                     <dt id="use" data-name="Use" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'use')"><i class="icon "></i> </dt>
+                     <dt id="after_use" data-name="After use" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'after_use')"><i class="icon "></i> </dt>
+
         </dl>
                 </div>
             </div>

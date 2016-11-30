@@ -1,0 +1,74 @@
+
+{% load static %}
+{% block stylesheets %}
+<style>
+
+    </style>
+{% endblock %}
+
+                <table class="table table-bordered display" id="indicators_table" >
+   <thead>
+    <tr>
+                   <tr>
+   <th></th> <th>Indicators</th>
+  </tr>
+   </thead>
+  <tbody>
+
+
+        {% for indicator in indicators %}
+              <tr class="clickable-row" id="{{ indicator.indicator}}" data-name="{{ indicator.indicator}}">
+     <td> <input type="checkbox" /></td> <td >{{ indicator.indicator}}</td>
+  </tr>
+
+        {% endfor %}
+
+
+</tbody>
+</table>
+
+{% block scripts %}
+    <script>
+ $(document).ready(function() {
+
+
+            $("#clickable-row").click(function() {
+
+                console.log($(this).data("name"));
+
+                  var url = '/indicators_info/';
+                  data = {'name': $(this).data("name")};
+
+                    $.ajax({
+                        url: url,
+                        crossDomain: true,
+                        type: 'GET',
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        dataType: 'json',
+                        data: data,
+                        beforeSend: function(jqXHR, settings) {
+
+                        },
+                        success: function(data, textStatus, jqXHR) {
+                          console.log("Success", data);
+
+                            $("#indicator_content").html(data["html"]);
+
+
+
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log("Failed");
+                        },
+                        complete: function(jqXHR, textStatus) {
+                            console.log("Completed")
+
+                        }
+                    });
+
+            });
+
+
+});
+</script>
+{% endblock %}

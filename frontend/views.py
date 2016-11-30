@@ -11,7 +11,7 @@ from forms import DesignChoiceForm
 from constants import STEPS_NAME, STEPS_METHODS
 from forms import DOMAIN_CHOICES, PROBLEM_TYPE_CHOICES, TBL_CHOICES
 # Create your views here.
-from methods.models import Definitions
+from methods.models import Definitions, Methods
 from methods.models import Indicators
 
 
@@ -137,6 +137,27 @@ def definitions_info(request):
 
         return HttpResponse(json.dumps({"html": sustainability_definitions_html}), content_type="application/json")
 
+def indicators_list(request):
+    """
+    Fetch indicators list based on type and tbl_scope
+    :param request:
+    :return:
+    """
+    if request.GET or request.is_ajax():
+        req_params = dict(request.GET)
+
+        type = req_params['type'][0]
+        tbl_scope = req_params['tbl_scope'][0]
+        indicator_objects = Indicators.objects.filter(type=type, tbl_scope__tbl_scope=tbl_scope)
+
+        html_template = get_template("methods/indicators_list.html")
+
+        context = Context({"indicators": indicator_objects})
+        sustainability_indicators_html = html_template.render(context)
+
+        return HttpResponse(json.dumps({"html": sustainability_indicators_html}), content_type="application/json")
+
+
 def indicators_info(request):
     """
 
@@ -146,15 +167,39 @@ def indicators_info(request):
     if request.GET or request.is_ajax():
         req_params = dict(request.GET)
 
-        indicator_name = req_params['name'][0]
-        indicator_object = Indicators.objects.get(indicator=indicator_name)
+        name = req_params['name'][0]
+
+        indicator_object = Indicators.objects.get(name=name)
 
         html_template = get_template("methods/indicators_info.html")
 
-        context = Context({"definition": indicator_object})
+        context = Context({"indicator": indicator_object})
         sustainability_indicators_html = html_template.render(context)
 
         return HttpResponse(json.dumps({"html": sustainability_indicators_html}), content_type="application/json")
+
+def fetch_lc_phase(request):
+    """
+
+    :param request:
+    :return:
+    """
+    if request.GET or request.is_ajax():
+        req_params = dict(request.GET)
+        print req_params
+        tbl_scope = req_params['tbl_scope'][0]
+        domain = req_params['domain'][0]
+        problem_type = req_params['problem_type'][0]
+        # lc_phase = req_params['lc_phase'][0]
+        methods = Methods.objects.get(problem=problem_type, domain=domain, tbl_scope__tbl_scope=tbl_scope, lcp="All")
+
+        html_template = get_template("methods/indicators_info.html")
+
+        context = Context({"definition": methods})
+        sustainability_indicators_html = html_template.render(context)
+
+        return HttpResponse(json.dumps({"html": sustainability_indicators_html}), content_type="application/json")
+
 
 
 def instructions(request):

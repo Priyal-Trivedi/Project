@@ -53,6 +53,43 @@ function next_steps(domain, tbl_scope, problem_type) {
 }
 
 
+function lc_phase(domain, tbl_scope, problem_type, lc_phase) {
+
+    console.log(step);
+  var url = '/fetch_lc_phase/';
+
+
+  data = {'step': step, 'domain': domain, 'tbl_scope': tbl_scope, 'problem_type': problem_type, 'lc_phase': lc_phase };
+
+    $.ajax({
+        url: url,
+        crossDomain: true,
+        type: 'GET',
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        dataType: 'json',
+        data: data,
+        beforeSend: function(jqXHR, settings) {
+
+        },
+        success: function(data, textStatus, jqXHR) {
+          console.log("Success", data);
+
+            $("#content").html(data["context_info"]);
+
+          $("#step_info").html("<p>"+data['step_info']+"</p>");
+            step += 1;
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log("Failed");
+        },
+        complete: function(jqXHR, textStatus) {
+            console.log("Completed")
+
+        }
+    });
+
+}
+
 
 
 

@@ -35,28 +35,24 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-11">
 
-                <table class="table table-bordered display" id="indicators_table" >
-   <thead>
-    <tr>
-                   <tr>
-   <th></th> <th>Indicators</th>
-  </tr>
-   </thead>
-  <tbody>
+{#                Show buttons with keys#}
 
+                {% for type in types %}
+                   <button type="button" class="btn btn-info" data-type='{{ type }}' data-tbl='{{ tbl_scope }}'>{{ type }}</button> &nbsp;
+                {% endfor %}
+            <hr>
 
-        {% for indicator in indicators %}
-              <tr class="clickable-row" id="{{ indicator.indicator }}" data-name="{{ indicator.indicator }}">
-     <td> <input type="checkbox" /></td> <td >{{ indicator.indicator }}</td>
-  </tr>
+ </div>
+        </div>
 
-        {% endfor %}
+    <div class="row">
+    <div class="col-lg-6">
+        <div id="indicators_list">
 
+            </div>
 
-</tbody>
-</table>
                 </div>
 
          <div class="col-lg-6" id="indicator_content">
@@ -76,9 +72,7 @@
 <script>
     $(document).ready(function(){
 
-            $('#indicators_table').DataTable();
-
-            $(".clickable-row").click(function() {
+            $("#clickable-row").click(function() {
 
                 console.log($(this).data("name"));
 
@@ -113,6 +107,44 @@
                     });
 
             });
+
+            $(".btn").click(function() {
+
+                console.log($(this).data("type"));
+                console.log($(this).data("tbl"));
+
+                  var url = '/indicators_list/';
+                  data = {'type': $(this).data("type"), 'tbl_scope': $(this).data("tbl") };
+
+                    $.ajax({
+                        url: url,
+                        crossDomain: true,
+                        type: 'GET',
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        dataType: 'json',
+                        data: data,
+                        beforeSend: function(jqXHR, settings) {
+
+                        },
+                        success: function(data, textStatus, jqXHR) {
+                          console.log("Success", data);
+
+                            $("#indicators_list").html(data["html"]);
+
+                            $('#indicators_table').DataTable();
+
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log("Failed");
+                        },
+                        complete: function(jqXHR, textStatus) {
+                            console.log("Completed")
+
+                        }
+                    });
+
+            });
+
 
 
 });
