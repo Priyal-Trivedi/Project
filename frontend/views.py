@@ -137,6 +137,25 @@ def definitions_info(request):
 
         return HttpResponse(json.dumps({"html": sustainability_definitions_html}), content_type="application/json")
 
+def indicators_info(request):
+    """
+
+    :param request:
+    :return:
+    """
+    if request.GET or request.is_ajax():
+        req_params = dict(request.GET)
+
+        indicator_name = req_params['name'][0]
+        indicator_object = Indicators.objects.get(indicator=indicator_name)
+
+        html_template = get_template("methods/indicators_info.html")
+
+        context = Context({"definition": indicator_object})
+        sustainability_indicators_html = html_template.render(context)
+
+        return HttpResponse(json.dumps({"html": sustainability_indicators_html}), content_type="application/json")
+
 
 def instructions(request):
     print "I'm here in instructions"

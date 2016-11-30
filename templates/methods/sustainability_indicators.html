@@ -48,7 +48,7 @@
 
 
         {% for indicator in indicators %}
-              <tr class="clickable-row" id="{{ indicator }}" data-name="{{ indicator }}">
+              <tr class="clickable-row" id="{{ indicator.indicator }}" data-name="{{ indicator.indicator }}">
      <td> <input type="checkbox" /></td> <td >{{ indicator.indicator }}</td>
   </tr>
 
@@ -58,6 +58,13 @@
 </tbody>
 </table>
                 </div>
+
+         <div class="col-lg-6" id="indicator_content">
+
+                        <h3>Click on any of the indicators to know more.</h3>
+                    </div>
+
+
             </div>
         </div>
     </div>
@@ -70,6 +77,42 @@
     $(document).ready(function(){
 
             $('#indicators_table').DataTable();
+
+            $(".clickable-row").click(function() {
+
+                console.log($(this).data("name"));
+
+                  var url = '/indicators_info/';
+                  data = {'name': $(this).data("name")};
+
+                    $.ajax({
+                        url: url,
+                        crossDomain: true,
+                        type: 'GET',
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        dataType: 'json',
+                        data: data,
+                        beforeSend: function(jqXHR, settings) {
+
+                        },
+                        success: function(data, textStatus, jqXHR) {
+                          console.log("Success", data);
+
+                            $("#indicator_content").html(data["html"]);
+
+
+
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log("Failed");
+                        },
+                        complete: function(jqXHR, textStatus) {
+                            console.log("Completed")
+
+                        }
+                    });
+
+            });
 
 
 });
