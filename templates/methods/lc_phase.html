@@ -1,0 +1,124 @@
+
+{% load static %}
+{% block stylesheets %}
+    <style>
+    #rcorners2 {
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+    padding: 20px;
+    width: 200px;
+    height: 150px;
+}
+    </style>
+
+{% endblock %}
+<div class="row">
+
+
+    <div class="row">
+
+        <div class="col-md-8">
+
+            <p> What is the guiding sustainability definition used in this work ?</p>
+        </div>
+
+    </div>
+
+    <div class="col-lg-11 rcorners2">
+        <div class="row">
+            <div class="col-lg-6">
+                <h3> Select Methods</h3>
+            </div>
+        </div>
+
+        <div class="row">
+
+                    <!-- Iterate over names and show information of selected names -->
+             <div class="col-lg-6">
+
+<table class="table table-bordered" id="methods_table">
+   <thead>
+    <tr>
+                   <tr>
+   <th></th> <th>Methods</th>
+  </tr>
+   </thead>
+  <tbody>
+
+
+        {% for method in methods %}
+              <tr class="clickable-row" id="{{ method.name }}" data-name="{{ method.name }}">
+     <td> <input type="checkbox" /></td> <td >{{ method.name }}</td>
+  </tr>
+
+        {% endfor %}
+
+
+</tbody>
+
+</table>
+
+            </div>
+
+                     <div class="col-lg-5" id="input_output_procedure_content">
+
+                        <h3>Click on any of the methods to know more.</h3>
+                    </div>
+
+        </div>
+    </div>
+</div>
+
+{% block scripts %}
+
+
+
+    <!-- Initialize the plugin: -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+
+            $(".clickable-row").click(function() {
+                console.log($(this).data("name"));
+
+                  var url = '/methods_info/';
+                  data = {'method': $(this).data("name")};
+
+                    $.ajax({
+                        url: url,
+                        crossDomain: true,
+                        type: 'GET',
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        dataType: 'json',
+                        data: data,
+                        beforeSend: function(jqXHR, settings) {
+
+                        },
+                        success: function(data, textStatus, jqXHR) {
+                          console.log("Success", data);
+
+                            $("#input_output_procedure_content").html(data["html"]);
+
+                         $('#methods_table').DataTable();
+
+
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log("Failed");
+                        },
+                        complete: function(jqXHR, textStatus) {
+                            console.log("Completed")
+
+                        }
+                    });
+
+
+
+    });
+
+        });
+    </script>
+
+
+
+{% endblock %}

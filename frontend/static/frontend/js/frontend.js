@@ -74,7 +74,7 @@ function lc_phase(domain, tbl_scope, problem_type, lc_phase) {
         success: function(data, textStatus, jqXHR) {
           console.log("Success", data);
 
-            $("#content").html(data["context_info"]);
+            $("#content").html(data["html"]);
 
           $("#step_info").html("<p>"+data['step_info']+"</p>");
             step += 1;

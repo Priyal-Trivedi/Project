@@ -178,6 +178,28 @@ def indicators_info(request):
 
         return HttpResponse(json.dumps({"html": sustainability_indicators_html}), content_type="application/json")
 
+
+def methods_info(request):
+    """
+
+    :param request:
+    :return:
+    """
+    print dict(request.GET)
+    if request.GET or request.is_ajax():
+        req_params = dict(request.GET)
+        name = req_params['method'][0]
+
+        method_object = Methods.objects.get(name=name)
+
+        html_template = get_template("methods/methods_info.html")
+
+        context = Context({"method": method_object})
+        methods_info_html = html_template.render(context)
+
+        return HttpResponse(json.dumps({"html": methods_info_html}), content_type="application/json")
+
+
 def fetch_lc_phase(request):
     """
 
@@ -190,12 +212,12 @@ def fetch_lc_phase(request):
         tbl_scope = req_params['tbl_scope'][0]
         domain = req_params['domain'][0]
         problem_type = req_params['problem_type'][0]
-        # lc_phase = req_params['lc_phase'][0]
-        methods = Methods.objects.get(problem=problem_type, domain=domain, tbl_scope__tbl_scope=tbl_scope, lcp="All")
+        # lc_phase = req_params['lc_phase'][0e]
+        methods = Methods.objects.filter(tbl_scope__tbl_scope=tbl_scope, lcp="All")
+        print methods
+        html_template = get_template("methods/lc_phase.html")
 
-        html_template = get_template("methods/indicators_info.html")
-
-        context = Context({"definition": methods})
+        context = Context({"methods": methods})
         sustainability_indicators_html = html_template.render(context)
 
         return HttpResponse(json.dumps({"html": sustainability_indicators_html}), content_type="application/json")

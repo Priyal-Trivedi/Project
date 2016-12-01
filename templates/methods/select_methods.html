@@ -1,12 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>select methods</title>
+
+{% load static %}
+{% block stylesheets %}
+
+<link rel="stylesheet" src={% static 'css/bootstrap-multiselect.css' %} type="text/css"/>
+<link rel="stylesheet" src='https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css' type="text/css"/>
+
+{% endblock %}
+<div class="row">
 
 
-</head>
-<body>
+    <div class="row">
 
-</body>
-</html>
+        <div class="col-md-8">
+
+            <p> LC Phase selection</p>
+        </div>
+
+    </div>
+
+</div>
+
+
+{% block scripts %}
+
+
+<script>
+    $(document).ready(function(){
+
+
+});
+
+</script>
+
+
+{% endblock %}
