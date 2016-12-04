@@ -254,7 +254,7 @@
           <a href="#" class="btn btn-primary">4</a>
           <a href="#" class="btn btn-primary">5</a>
           <a href="#" class="btn btn-sq btn-info"><i class="fa fa-5x"></i><br/>11 <br></a>
-            <a href="#" id="next_step" onclick="next_steps('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}')">
+            <a href="#" id="next_step" onclick="next_steps('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', '{{ current_step }}')">
                 <span  class="glyphicon glyphicon-menu-right fa-100x"  >  </span> </a>
 
             </p>
@@ -278,11 +278,25 @@
 
             <div class="col-md-11">
                 <div class="row">
+
+                    {% if step_info %}
+
+                        <div class="col-md-5"> Step Info - <a id="step_info"> </a>{{ step_info }}</div>
+                    {% else %}
                         <div class="col-md-5"> Step Info - <a id="step_info"> </a></div>
+                    {% endif %}
                 </div>
 
-                <div id="content">
+            <div id="rendered_content">
+                {% if rendered_content %}
 
+                        {{ rendered_content }}
+
+                {% endif %}
+
+            </div>
+
+                <div id="content">
 
                 </div>
 

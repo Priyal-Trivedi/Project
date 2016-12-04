@@ -1,5 +1,6 @@
 import json
 
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -14,7 +15,7 @@ from forms import DOMAIN_CHOICES, PROBLEM_TYPE_CHOICES, TBL_CHOICES
 from methods.models import Definitions, Methods
 from methods.models import Indicators
 
-
+from userauth.models import IndeateUser
 def home(request):
     """
 
@@ -31,7 +32,7 @@ def home(request):
 def data(request):
     return render(request, 'index.html')
 
-
+@login_required
 def design(request):
     """
     Home for the user to choose domain, tbl_scope
@@ -40,36 +41,58 @@ def design(request):
     :return:
     """
     #TODO - Based on the step which is saved in indeateuser object's field, take user there.
-    if request.method == "POST":
-        # create a form instance and populate it with data from the request:
-        form = DesignChoiceForm(request.POST)
-        # check whether it's valid:
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            request_parameters = dict(request.POST)
-            problem_type = request_parameters.get('problem_type')[0]
-            problem_type = dict(PROBLEM_TYPE_CHOICES).get(problem_type)
+    print type(request.user)
 
-            tbl_scope = request_parameters.get('triple_bottom_line')[0]
-            tbl_scope = dict(TBL_CHOICES).get(tbl_scope)
+    user = request.user
+    user = IndeateUser.objects.get(username=user.username)
+    print user.username
+    user_progress = user.step_reached
+    print user_progress
 
-            domain = request_parameters.get('domain')[0]
-            domain = dict(DOMAIN_CHOICES).get(domain)
+    if user_progress > 0:
+        context_info_html = next_step(request, user_progress)
+        return render(request, 'design_methods.html', {'problem_type': user.design_data.problem_type,
+                                                       'tbl_scope': user.design_data.tbl_scope.tbl_scope,
+                                                       'domain': user.design_data.domain.domain,
+                                                       'rendered_content' : context_info_html,
+                                                       'current_step': user.step_reached,
+                                                       'step_info': STEPS_NAME[str(user.step_reached)]
+                                                       })
 
-            return render(request, 'design_methods.html', {'problem_type': problem_type,
-                                                           'tbl_scope': tbl_scope,
-                                                           'domain': domain})
-        else:
-            form = DesignChoiceForm()
     else:
-        print "I'm here in get request"
-        #TODO : Fetch the step at which the user is currently now and then show the details of that step.
+        if request.method == "POST":
+            # create a form instance and populate it with data from the request:
+            form = DesignChoiceForm(request.POST)
+            # check whether it's valid:
+            if form.is_valid():
+                # process the data in form.cleaned_data as required
+                # ...
+                # redirect to a new URL:
+                request_parameters = dict(request.POST)
+                problem_type = request_parameters.get('problem_type')[0]
+                problem_type = dict(PROBLEM_TYPE_CHOICES).get(problem_type)
 
-        form = DesignChoiceForm()
+                tbl_scope = request_parameters.get('triple_bottom_line')[0]
+                tbl_scope = dict(TBL_CHOICES).get(tbl_scope)
 
-    return render(request, 'design.html', {"form": form})
+                domain = request_parameters.get('domain')[0]
+                domain = dict(DOMAIN_CHOICES).get(domain)
+
+                # Save the chosen tbl_scope, domain and problem type in user data inforamtion
+                user.save_user_progress(tbl_scope, domain, problem_type)
+
+                return render(request, 'design_methods.html', {'problem_type': problem_type,
+                                                               'tbl_scope': tbl_scope,
+                                                               'domain': domain, 'current_step':0})
+            else:
+                form = DesignChoiceForm()
+        else:
+            print "I'm here in get request"
+            #TODO : Fetch the step at which the user is currently now and then show the details of that step.
+
+            form = DesignChoiceForm()
+
+        return render(request, 'design.html', {"form": form})
 
 
 def design_methods(request):
@@ -90,30 +113,59 @@ def design_methods(request):
             return render(request, 'design_methods.html')
 
 @csrf_exempt
-def next_step(request):
+def next_step(request, step_progress=None):
     """
 
     :param request:
     :return:
     """
-
-    if request.POST or request.is_ajax():
+    user_obj = IndeateUser.objects.get(username=request.user.username)
+    user_data_obj = user_obj.design_data
+    if request.POST or request.is_ajax() and (step_progress is None):
         """
         processing POST request or ajax request
         """
+
         request_parameters = dict(request.POST)
-        print request_parameters
-        step = request_parameters.get('step')[0]
+
+        # This is a front-end request to move ahead to next step.
+        current_step = user_obj.step_reached
+        next_step = current_step + 1
+
 
         tbl_scope = request_parameters.get('tbl_scope')[0]
         domain = request_parameters.get('domain')[0]
         problem_type = request_parameters.get('problem_type')[0]
+        step_info = STEPS_NAME[str(next_step)]
 
-        step_info = STEPS_NAME[step]
-        context_info = STEPS_METHODS[step]({'step':step, 'tbl_scope': tbl_scope, 'domain': domain,
+        try:
+            context_info = STEPS_METHODS[str(next_step)]({'step': next_step, 'tbl_scope': tbl_scope, 'domain': domain,
                                       'problem_type': problem_type})
+        except Exception as e:
+            print e
+            return HttpResponse(json.dumps({"step_info": step_info, 'status': False}),
+                                content_type="application/json")
+        else:
 
-        return HttpResponse(json.dumps({"step_info": step_info, 'context_info': context_info}), content_type="application/json")
+            # Save the user step progress
+
+            user_obj.step_reached = int(next_step)
+            user_obj.save()
+
+            return HttpResponse(json.dumps({"step_info": step_info, 'context_info': context_info}), content_type="application/json")
+    else:
+        print step_progress
+        try:
+            context_info = STEPS_METHODS[str(step_progress)]({'step':step_progress, 'tbl_scope':
+                user_data_obj.tbl_scope.tbl_scope, 'domain': user_data_obj.domain.domain,
+                                                              'problem_type': user_data_obj.problem_type})
+        except Exception as e:
+            print e
+            return HttpResponse(json.dumps({"step_info": step_progress, 'status': False}),
+                                content_type="application/json")
+        else:
+            print "I'm here and returning "
+            return context_info
 
 
 def definitions_info(request):

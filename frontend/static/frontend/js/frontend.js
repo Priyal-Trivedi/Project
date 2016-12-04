@@ -21,7 +21,8 @@ function next_steps(domain, tbl_scope, problem_type) {
 
 
   var url = '/next_step/';
-  data = {'step': step, 'domain': domain, 'tbl_scope': tbl_scope, 'problem_type': problem_type };
+
+  data = { 'domain': domain, 'tbl_scope': tbl_scope, 'problem_type': problem_type};
 
     $.ajax({
         url: url,
@@ -36,10 +37,11 @@ function next_steps(domain, tbl_scope, problem_type) {
         success: function(data, textStatus, jqXHR) {
           console.log("Success", data);
 
+            $("#rendered_content").html("");
             $("#content").html(data["context_info"]);
 
           $("#step_info").html("<p>"+data['step_info']+"</p>");
-            step += 1;
+            step = current_step + 1;
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log("Failed");
