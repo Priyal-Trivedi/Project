@@ -1,6 +1,8 @@
 from django.db import models
 
 
+
+
 class TBL_Scope(models.Model):
     """
 
@@ -33,7 +35,8 @@ class Domain(models.Model):
 
 class Definitions(models.Model):
     """
-
+    A table in my database: db.sqlite3. Every field is a column.
+    Rows - Values in this column.
     """
 
     name = models.CharField(max_length=255)
@@ -87,3 +90,25 @@ class Methods(models.Model):
     example = models.TextField()
     external_link = models.CharField(max_length=255, null=True, blank=True)
     sources = models.CharField(max_length=255, null=True, blank=True)
+
+
+class System_Boundary(models.Model):
+    """
+
+    """
+
+    changes_allowed = models.TextField()
+    changes_not_allowed = models.TextField()
+    user = models.ForeignKey('userauth.IndeateUser')
+
+
+class Generate_Requirements(models.Model):
+    """
+
+    """
+
+    life_cycle_phases = models.TextField()
+    current_systems = models.TextField()
+    issues = models.TextField()
+    requirements = models.TextField()
+    user = models.ForeignKey('userauth.IndeateUser')

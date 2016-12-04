@@ -1,5 +1,5 @@
 from methods.methods import select_system_boundary, generate_requirements, select_sustainability_definitions, select_sustainability_indicators , select_methods_tc
-
+from methods.save_methods import save_system_boundary, save_generate_requirements
 
 STEPS_NAME = {
     '1': "Select System Boundary",
@@ -16,4 +16,9 @@ STEPS_METHODS = {
     '3': select_sustainability_definitions,
     '4': select_sustainability_indicators,
     '5': select_methods_tc
+}
+
+SAVE_STEPS_METHODS = {
+    1: save_system_boundary,
+    2: save_generate_requirements
 }

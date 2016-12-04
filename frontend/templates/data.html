@@ -2,7 +2,6 @@
 {% load static %}
 {% block title %}Design Methods{% endblock %}
 {% block stylesheets %}
- <link rel="stylesheet" src='https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css' type="text/css"/>
 
 
     <style>
@@ -254,67 +253,68 @@
           <a href="#" class="btn btn-primary">4</a>
           <a href="#" class="btn btn-primary">5</a>
           <a href="#" class="btn btn-sq btn-info"><i class="fa fa-5x"></i><br/>11 <br></a>
-            <a href="#" id="next_step" onclick="next_steps('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', '{{ current_step }}')">
-                <span  class="glyphicon glyphicon-menu-right fa-100x"  >  </span> </a>
+{#            <a href="#" id="next_step" onclick="next_steps('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', '{{ current_step }}')">#}
+{#                <span  class="glyphicon glyphicon-menu-right fa-100x"  >  </span> </a>#}
 
             </p>
 
                 </div>
 
-            <div class="col-md-1">
-
-                <div class="along-side">
-                   <dl class="list-features">
-                    <dt id="material" data-name="Material" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'material')"><i class="icon "></i></dt>
-                     <dt id="production" data-name="Production" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'production')"><i class="icon "></i> </dt>
-                     <dt id="assembly" data-name="Assembly" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'assembly')"><i class="icon "></i> </dt>
-                     <dt id="use" data-name="Use" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'use')"><i class="icon "></i> </dt>
-                     <dt id="after_use" data-name="After use" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'after_use')"><i class="icon "></i> </dt>
-
-        </dl>
-                </div>
-            </div>
-
-
-            <div class="col-md-11">
-                <div class="row">
-
-                    {% if step_info %}
-
-                        <div class="col-md-5"> Step Info - <a id="step_info"> </a>{{ step_info }}</div>
-                    {% else %}
-                        <div class="col-md-5"> Step Info - <a id="step_info"> </a></div>
-                    {% endif %}
-                </div>
-
-            <div id="rendered_content">
-                {% if rendered_content %}
-
-                        {{ rendered_content }}
-
-                {% endif %}
-
-            </div>
-
-                <div id="content">
-
-                </div>
+{#            <div class="col-md-1">#}
+{##}
+{#                <div class="along-side">#}
+{#                   <dl class="list-features">#}
+{#                    <dt id="material" data-name="Material" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'material')"><i class="icon "></i></dt>#}
+{#                     <dt id="production" data-name="Production" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'production')"><i class="icon "></i> </dt>#}
+{#                     <dt id="assembly" data-name="Assembly" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'assembly')"><i class="icon "></i> </dt>#}
+{#                     <dt id="use" data-name="Use" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'use')"><i class="icon "></i> </dt>#}
+{#                     <dt id="after_use" data-name="After use" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'after_use')"><i class="icon "></i> </dt>#}
+{##}
+{#        </dl>#}
+{#                </div>#}
+{#            </div>#}
 
 
-
-            </div>
+{#            <div class="col-md-11">#}
+{#                <div class="row">#}
+{##}
+{#                    {% if step_info %}#}
+{##}
+{#                        <div class="col-md-5"> Step Info - <a id="step_info"> </a>{{ step_info }}</div>#}
+{#                    {% else %}#}
+{#                        <div class="col-md-5"> Step Info - <a id="step_info"> </a></div>#}
+{#                    {% endif %}#}
+{#                </div>#}
+{##}
+{#            <div id="rendered_content">#}
+{#                {% if rendered_content %}#}
+{##}
+{#                        {{ rendered_content }}#}
+{##}
+{#                {% endif %}#}
+{##}
+{#            </div>#}
+{##}
+{#                <div id="content">#}
+{##}
+{#                </div>#}
+{##}
+{##}
+{##}
+{#            </div>#}
 
         </div>
 
     </div>
-    </div>
+    <</div>
 {% endblock %}
 {% block scripts%}
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"> </script>
-<script type="text/javascript" src={% static 'frontend/js/frontend.js' %}></script>
+
+{#<script type="text/javascript" src={% static 'frontend/js/frontend.js' %}></script>#}
+<script type="text/javascript" src={% static 'frontend/js/data.js' %}></script>
 <script type="text/javascript" src={% static 'frontend/js/hover.js' %}></script>
 
 

@@ -9,13 +9,13 @@ from django.template.loader import get_template
 from django.views.decorators.csrf import csrf_exempt
 
 from forms import DesignChoiceForm
-from constants import STEPS_NAME, STEPS_METHODS
+from constants import STEPS_NAME, STEPS_METHODS, SAVE_STEPS_METHODS
 from forms import DOMAIN_CHOICES, PROBLEM_TYPE_CHOICES, TBL_CHOICES
 # Create your views here.
 from methods.models import Definitions, Methods
 from methods.models import Indicators
-
 from userauth.models import IndeateUser
+
 def home(request):
     """
 
@@ -30,7 +30,36 @@ def home(request):
 
 
 def data(request):
-    return render(request, 'index.html')
+    """
+
+    :param request:
+    :return:
+    """
+
+
+
+    return render(request, 'data.html')
+
+@csrf_exempt
+def save_data(request):
+    """
+
+    :param request:
+    :return:
+    """
+
+    if request.POST or request.is_ajax():
+        request_parameters = request.POST
+        data_save_step = int(request_parameters['step'][0])
+        print request.user
+        print type(request.user)
+        user = IndeateUser.objects.get(username=request.user.username)
+        if SAVE_STEPS_METHODS[data_save_step](request_parameters, user):
+            return HttpResponse(json.dumps({"success": "True"}), content_type="application/json")
+        else:
+            return HttpResponse(json.dumps({"success": "False"}), content_type="application/json")
+
+    return render(request, 'data.html')
 
 @login_required
 def design(request):
@@ -140,7 +169,7 @@ def next_step(request, step_progress=None):
 
         try:
             context_info = STEPS_METHODS[str(next_step)]({'step': next_step, 'tbl_scope': tbl_scope, 'domain': domain,
-                                      'problem_type': problem_type})
+                                      'problem_type': problem_type}, user_obj)
         except Exception as e:
             print e
             return HttpResponse(json.dumps({"step_info": step_info, 'status': False}),
@@ -158,7 +187,7 @@ def next_step(request, step_progress=None):
         try:
             context_info = STEPS_METHODS[str(step_progress)]({'step':step_progress, 'tbl_scope':
                 user_data_obj.tbl_scope.tbl_scope, 'domain': user_data_obj.domain.domain,
-                                                              'problem_type': user_data_obj.problem_type})
+                                                              'problem_type': user_data_obj.problem_type}, user_obj)
         except Exception as e:
             print e
             return HttpResponse(json.dumps({"step_info": step_progress, 'status': False}),

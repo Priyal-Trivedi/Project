@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^$', views.home),
     url(r'^design/$', views.design),
     url(r'^data/$', views.data),
+    url(r'^save_data/$', views.save_data),
     url(r'^instructions/$', views.instructions),
     url(r'^terminology/$', views.terminology),
     url(r'^design_methods/$', views.design_methods),

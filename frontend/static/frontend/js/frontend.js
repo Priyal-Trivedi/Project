@@ -94,5 +94,112 @@ function lc_phase(domain, tbl_scope, problem_type, lc_phase) {
 
 
 
+    <!-- Initialize the plugin: -->
+
+        $(document).ready(function() {
+
+
+            $("#save_system_boundary").click(function() {
+
+                  var url = '/save_data/';
+                  data = {'step': $(this).data("step"), 'changes_allowed': $("#changes_allowed").val(),
+                      'changes_not_allowed': $("#changes_not_allowed").val()  };
+
+                    $.ajax({
+                        url: url,
+                        crossDomain: true,
+                        type: 'POST',
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        dataType: 'json',
+                        data: data,
+                        beforeSend: function(jqXHR, settings) {
+
+                        },
+                        success: function(data, textStatus, jqXHR) {
+                          console.log("Success", data);
+
+                            if(data['success'] == 'True')
+                            {
+                                Messenger().post({
+  message: "Data saved for System Boundary",
+  type: "info"
+})
+                            }
+                            else{
+                                Messenger().post({
+  message: "Some error occured in saving data for System Boundary",
+  type: "error"
+})
+                            }
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log("Failed");
+                        },
+                        complete: function(jqXHR, textStatus) {
+                            console.log("Completed")
+
+                        }
+                    });
+
+
+
+    });
+
+                        $("#save_generate_requirements").click(function() {
+
+                  var url = '/save_data/';
+                  data = {'step': $(this).data("step"), 'lc_phase': $("#lc_phase").val(),
+                      'current_systems': $("#current_systems").val(), 'issues': $("#issues").val(),
+                        'requirements': $("#requirements").val() };
+
+                    $.ajax({
+                        url: url,
+                        crossDomain: true,
+                        type: 'POST',
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        dataType: 'json',
+                        data: data,
+                        beforeSend: function(jqXHR, settings) {
+
+                        },
+                        success: function(data, textStatus, jqXHR) {
+                          console.log("Success", data);
+
+                            if(data['success'] == 'True')
+                            {
+                                Messenger().post({
+  message: "Data saved for Generate Requirements",
+  type: "info"
+})
+                            }
+                            else{
+                                Messenger().post({
+  message: "Some error occured in saving data for Generate Requirements",
+  type: "error"
+})
+                            }
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log("Failed");
+                        },
+                        complete: function(jqXHR, textStatus) {
+                            console.log("Completed")
+
+                        }
+                    });
+
+
+
+    });
+
+
+
+
+        });
+
+
+
+
+
 
 // Making an ajax call to a view in python and then loading an html.
