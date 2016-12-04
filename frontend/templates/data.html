@@ -1,194 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Design Methods{% endblock %}
+{% block title %}Data{% endblock %}
 {% block stylesheets %}
 
 
     <style>
-    #for-buttons {
-            position:absolute;
-            float:right;
-
-            }
-
- #container {
-    position:relative;
-    float:right;
-}
-            #myImg{
-                    border-radius: 5px;
-                    cursor: pointer;
-                   top: 80px;
-                    right: 0;
-
-           }
-
-            #myImg:hover {opacity: 0.7;}
-
-            /* The Modal (background) */
-             .modal {
-                     display: none; /* Hidden by default */
-                     position: fixed; /* Stay in place */
-                    z-index: 2500; /* Sit on top */
-                     padding-top: 100px; /* Location of the box */
-                    left: 0;
-                     top: 0;
-                     width: 100%; /* Full width */
-                     height: 100%; /* Full height */
-                     overflow: auto; /* Enable scroll if needed */
-                      background-color: rgb(0,0,0); /* Fallback color */
-                     background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-             }
-
-            /* Modal Content (image) */
-            .modal-content {
-                       margin: auto;
-                      display: block;
-                      width: 80%;
-                      max-width: 700px;
-            }
-
-            /* Caption of Modal Image */
-            #caption {
-                     margin: auto;
-                     display: block;
-                    width: 80%;
-                    max-width: 700px;
-                     text-align: center;
-                  color: #ccc;
-                padding: 10px 0;
-                    height: 150px;
-            }
-
-            /* Add Animation */
-            .modal-content, #caption {
-                     -webkit-animation-name: zoom;
-                    -webkit-animation-duration: 0.6s;
-                     animation-name: zoom;
-                     animation-duration: 0.6s;
-            }
-
-            @-webkit-keyframes zoom {
-                 from {-webkit-transform:scale(0)}
-                 to {-webkit-transform:scale(1)}
-            }
-
-            @keyframes zoom {
-                 from {transform:scale(0)}
-                 to {transform:scale(1)}
-            }
-
-            /* The Close Button */
-            .close {
-                 position: absolute;
-                 top: 15px;
-                right: 35px;
-                color: #f1f1f1;
-                 font-size: 40px;
-                 font-weight: bold;
-                 transition: 0.3s;
-
-            }
-
-            .close:hover,
-            .close:focus {
-                 color: #bbb;
-                  text-decoration: none;
-                  cursor: pointer;
-            }
-
-            /* 100% Image Width on Smaller Screens */
-            @media only screen and (max-width: 700px){
-                 .modal-content {
-                  width: 100%;
-             }
-            }
-
-
-            .list-features i {
-             color: #F1FFF7;
-                width: 50px;
-                height: 50px;
-                 border-radius: 25px;
-                 background: #20AA76;
-                 line-height: 1.68em;
-               display: inline-block;
-                text-align: center;
-                }
-            .icon {
-                display: inline-block;
-                font: normal normal normal 14px/1 FontAwesome;
-                 font-size: inherit;
-                text-rendering: auto;
-                -webkit-font-smoothing: antialiased;
-                 -moz-osx-font-smoothing: grayscale;
-                }
-            user agent stylesheet
-            i, cite, em, var, address, dfn {
-                 font-style: italic;
-                }
-            Inherited from dt
-            .list-features dt {
-              font-size: 24px;
-                font-size: 2.4rem;
-                 border-top: 1px solid #CFE3DC;
-                 padding-top: 25px;
-                }
-                dl dt {
-                font-family: "Roboto", Corbel, Avenir, "Lucida Grande", "Lucida Sans", sans-serif;
-                font-weight: 400;
-                }
-        .btn-circle {
-              width: 50px;
-              height: 50px;
-             text-align: center;
-                 padding: 15px 0;
-                font-size: 12px;
-             line-height: 1.428571429;
-             border-radius: 20px;
-            }
-.btn-circle.btn-lg {
-  width: 50px;
-  height: 50px;
-  padding: 10px 16px;
-  font-size: 18px;
-  line-height: 1.33;
-  border-radius: 25px;
-}
-.btn-circle.btn-xl {
-  width: 70px;
-  height: 70px;
-  padding: 10px 16px;
-  font-size: 24px;
-  line-height: 1.33;
-  border-radius: 35px;
-}
-
-        .btn-sq-lg {
-            width: 50px !important;
-            height: 50px !important;
-        }
-
-        .btn-sq {
-            width: 40px !important;
-            height: 40px !important;
-            font-size: 10px;
-
-        }
-
-        .btn-sq-sm {
-            width: 20px !important;
-            height: 20px !important;
-            font-size: 10px;
-
-        }
-
-        .btn-sq-xs {
-            width: 15px !important;
-            height: 15px !important;
-            padding: 2px;
-
-        }
 
     </style>
 
@@ -198,124 +14,94 @@
 
 <div class="container">
 
-        <div class="row">
-            <div class=for-buttons">
-                <div class="col-md-12">
+    <div class="row">
+        <div class=for-buttons">
+            <div class="col-md-12">
 
 
-
-
-            <!-- The Modal -->
+                <!-- The Modal -->
                 <div id="myModal" class="modal">
-                <span class="close">×</span>
-                <img class="modal-content" id="img01">
-                <div id="caption"></div>
+                    <span class="close">×</span>
+                    <img class="modal-content" id="img01">
+                    <div id="caption"></div>
                 </div>
-<div class="row">
-    <div class="col-lg-3">
+                <div class="row">
+                    <div class="col-lg-3">
 
-    <p> <h6>Problem Type : {{ problem_type }}</h6> </p>
+                        <p> <h6>Problem Type : {{ problem_type }}</h6> </p>
 
-    </div>
+                    </div>
 
-<div class="col-lg-3">
+                    <div class="col-lg-3">
 
-    <p> <h6> Triple Bottom Line  : {{ tbl_scope }}</h6> </p>
+                        <p> <h6> Triple Bottom Line : {{ tbl_scope }}</h6> </p>
 
-    </div>
+                    </div>
 
-    <div class="col-lg-3">
+                    <div class="col-lg-3">
 
-    <p> <h6> Domain : {{ domain }}</h6> </p>
+                        <p> <h6> Domain : {{ domain }}</h6> </p>
 
-    </div>
+                    </div>
 
-    </div >
-      <div class="col-lg-12">
+                </div>
+                <div class="col-lg-12">
                     <hr>
-  <img id="myImg" src='{% static 'frontend/GEMS.jpg' %}'  alt="GEMS" align="right" width="150" height="100"  >
-      <p>
-          <a href="#" class="btn btn-default btn-circle " id="btn_0" >1</a>
-          <a href="#" class="btn btn-sq btn-info" id="btn_1_big" >1</a>
-          <a href="#" class="btn btn-primary" id="btn_2">2</a>
-          <a href="#" class="btn btn-primary" id="btn_3">3</a>
-          <a href="#" class="btn btn-primary" id="btn_4">4</a>
-          <a href="#" class="btn btn-primary" id="btn_5">5</a>
-          <a href="#" class="btn btn-primary" id="btn_6" >6</a>
-          <a href="#" class="btn btn-sq btn-info" id="btn_7_big">1</a>
-          <a href="#" class="btn btn-primary" id="btn_7" >2</a>
-          <a href="#" class="btn btn-primary" id="btn_8">3</a>
-          <a href="#" class="btn btn-primary" id="btn_9">4</a>
-          <a href="#" class="btn btn-primary" id="btn_10">5</a>
-          <a href="#" class="btn btn-sq btn-info" id="btn_11">1</a>
-          <a href="#" class="btn btn-primary" id="btn_12">2</a>
-          <a href="#" class="btn btn-primary">3</a>
-          <a href="#" class="btn btn-primary">4</a>
-          <a href="#" class="btn btn-primary">5</a>
-          <a href="#" class="btn btn-sq btn-info"><i class="fa fa-5x"></i><br/>11 <br></a>
-{#            <a href="#" id="next_step" onclick="next_steps('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', '{{ current_step }}')">#}
-{#                <span  class="glyphicon glyphicon-menu-right fa-100x"  >  </span> </a>#}
+                    <img id="myImg" src='{% static 'frontend/GEMS.jpg' %}' alt="GEMS" align="right" width="150"
+                         height="100">
+                    <p>
+                        <a href="#" class="btn btn-default btn-circle " id="btn_0">1</a>
+                        <a href="#" class="btn btn-sq btn-info" id="btn_1_big">1</a>
+                        <a href="#" class="btn btn-primary" id="btn_2">2</a>
+                        <a href="#" class="btn btn-primary" id="btn_3">3</a>
+                        <a href="#" class="btn btn-primary" id="btn_4">4</a>
+                        <a href="#" class="btn btn-primary" id="btn_5">5</a>
+                        <a href="#" class="btn btn-primary" id="btn_6">6</a>
+                        <a href="#" class="btn btn-sq btn-info" id="btn_7_big">1</a>
+                        <a href="#" class="btn btn-primary" id="btn_7">2</a>
+                        <a href="#" class="btn btn-primary" id="btn_8">3</a>
+                        <a href="#" class="btn btn-primary" id="btn_9">4</a>
+                        <a href="#" class="btn btn-primary" id="btn_10">5</a>
+                        <a href="#" class="btn btn-sq btn-info" id="btn_11">1</a>
+                        <a href="#" class="btn btn-primary" id="btn_12">2</a>
+                        <a href="#" class="btn btn-primary">3</a>
+                        <a href="#" class="btn btn-primary">4</a>
+                        <a href="#" class="btn btn-primary">5</a>
+                        <a href="#" class="btn btn-sq btn-info"><i class="fa fa-5x"></i><br/>11 <br></a>
+                        {#            <a href="#" id="next_step" onclick="next_steps('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', '{{ current_step }}')">#}
+                        {#                <span  class="glyphicon glyphicon-menu-right fa-100x"  >  </span> </a>#}
 
-            </p>
+                    </p>
+
+
+            <div class="col-md-11">
+                <div class="row">
+                    <div id="data_content">
+
+
+                    </div>
+                </div>
+
+
 
                 </div>
 
-{#            <div class="col-md-1">#}
-{##}
-{#                <div class="along-side">#}
-{#                   <dl class="list-features">#}
-{#                    <dt id="material" data-name="Material" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'material')"><i class="icon "></i></dt>#}
-{#                     <dt id="production" data-name="Production" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'production')"><i class="icon "></i> </dt>#}
-{#                     <dt id="assembly" data-name="Assembly" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'assembly')"><i class="icon "></i> </dt>#}
-{#                     <dt id="use" data-name="Use" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'use')"><i class="icon "></i> </dt>#}
-{#                     <dt id="after_use" data-name="After use" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'after_use')"><i class="icon "></i> </dt>#}
-{##}
-{#        </dl>#}
-{#                </div>#}
-{#            </div>#}
 
+            </div>
 
-{#            <div class="col-md-11">#}
-{#                <div class="row">#}
-{##}
-{#                    {% if step_info %}#}
-{##}
-{#                        <div class="col-md-5"> Step Info - <a id="step_info"> </a>{{ step_info }}</div>#}
-{#                    {% else %}#}
-{#                        <div class="col-md-5"> Step Info - <a id="step_info"> </a></div>#}
-{#                    {% endif %}#}
-{#                </div>#}
-{##}
-{#            <div id="rendered_content">#}
-{#                {% if rendered_content %}#}
-{##}
-{#                        {{ rendered_content }}#}
-{##}
-{#                {% endif %}#}
-{##}
-{#            </div>#}
-{##}
-{#                <div id="content">#}
-{##}
-{#                </div>#}
-{##}
-{##}
-{##}
-{#            </div>#}
 
         </div>
-
     </div>
-    <</div>
+</div>
 {% endblock %}
-{% block scripts%}
+{% block scripts %}
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 
-{#<script type="text/javascript" src={% static 'frontend/js/frontend.js' %}></script>#}
-<script type="text/javascript" src={% static 'frontend/js/data.js' %}></script>
-<script type="text/javascript" src={% static 'frontend/js/hover.js' %}></script>
+    {#<script type="text/javascript" src={% static 'frontend/js/frontend.js' %}></script>#}
+    <script type="text/javascript" src={% static 'frontend/js/data.js' %}></script>
+    <script type="text/javascript" src={% static 'frontend/js/hover.js' %}></script>
 
 
 {% endblock scripts %}

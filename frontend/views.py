@@ -9,7 +9,7 @@ from django.template.loader import get_template
 from django.views.decorators.csrf import csrf_exempt
 
 from forms import DesignChoiceForm
-from constants import STEPS_NAME, STEPS_METHODS, SAVE_STEPS_METHODS
+from constants import STEPS_NAME, STEPS_METHODS, SAVE_STEPS_METHODS, GET_METHODS_DATA
 from forms import DOMAIN_CHOICES, PROBLEM_TYPE_CHOICES, TBL_CHOICES
 # Create your views here.
 from methods.models import Definitions, Methods
@@ -61,7 +61,26 @@ def save_data(request):
 
     return render(request, 'data.html')
 
-@login_required
+@csrf_exempt
+def fetch_data(request):
+    """
+
+    :param request:
+    :return:
+    """
+
+    if request.POST or request.is_ajax():
+        request_parameters = request.POST
+        data_save_step = int(request_parameters['step'][0])
+        print request.user
+        print type(request.user)
+        user = IndeateUser.objects.get(username=request.user.username)
+        html = GET_METHODS_DATA[data_save_step](request_parameters, user)
+        return HttpResponse(json.dumps({"success": "True", 'html': html}), content_type="application/json")
+
+    return render(request, 'data.html')
+
+
 def design(request):
     """
     Home for the user to choose domain, tbl_scope
