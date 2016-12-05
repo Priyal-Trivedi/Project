@@ -202,14 +202,14 @@ th {
   a:visited {
     text-decoration: underline;
   }
-  a[href]:after {
-    content: " (" attr(href) ")";
+  a[]:after {
+    content: " (" attr() ")";
   }
   abbr[title]:after {
     content: " (" attr(title) ")";
   }
-  a[href^="#"]:after,
-  a[href^="javascript:"]:after {
+  a[^="#"]:after,
+  a[^="javascript:"]:after {
     content: "";
   }
   pre,
@@ -4870,14 +4870,14 @@ a.label:focus {
 .label-default {
   background-color: #777;
 }
-.label-default[href]:hover,
-.label-default[href]:focus {
+.label-default[]:hover,
+.label-default[]:focus {
   background-color: #5e5e5e;
 }
 .label-primary {
   background-color: #337ab7;
 }
-.label-primary[href]:hover,
+.label-primary[]:hover,
 .label-primary[href]:focus {
   background-color: #286090;
 }

@@ -16,7 +16,7 @@ $("#btn_2").click(function() {
 $("#btn_3").click(function() {
   alert( "Button with id btn_3 is clicked." );
 });
-var step = 0;
+
 function next_steps(domain, tbl_scope, problem_type) {
 
 
@@ -41,7 +41,7 @@ function next_steps(domain, tbl_scope, problem_type) {
             $("#content").html(data["context_info"]);
 
           $("#step_info").html("<p>"+data['step_info']+"</p>");
-            step = current_step + 1;
+
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log("Failed");
@@ -57,11 +57,11 @@ function next_steps(domain, tbl_scope, problem_type) {
 
 function lc_phase(domain, tbl_scope, problem_type, lc_phase) {
 
-    console.log(step);
+
   var url = '/fetch_lc_phase/';
 
 
-  data = {'step': step, 'domain': domain, 'tbl_scope': tbl_scope, 'problem_type': problem_type, 'lc_phase': lc_phase };
+  data = { 'domain': domain, 'tbl_scope': tbl_scope, 'problem_type': problem_type, 'lc_phase': lc_phase };
 
     $.ajax({
         url: url,
@@ -79,7 +79,7 @@ function lc_phase(domain, tbl_scope, problem_type, lc_phase) {
             $("#content").html(data["html"]);
 
           $("#step_info").html("<p>"+data['step_info']+"</p>");
-            step += 1;
+
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log("Failed");

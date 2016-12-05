@@ -1,4 +1,9 @@
 {% load static %}
+<style>
+.navbar #nav > .active > a {
+    color: red;
+}
+</style>
 
 <!-- Fixed navbar -->
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -11,14 +16,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Indeate</a>
+            <a class="navbar-brand" href="/instructions">Indeate</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="/instructions">Home</a></li>
+                 <li><a href="/terminology">About</a></li>
                 <li><a href="/design">Design</a></li>
                 <li><a href="/data">Data</a></li>
-                <li><a href="/terminology">About</a></li>
                 <li><a href="/contribute">Contribute</a></li>
 
 
@@ -43,3 +48,12 @@
     </div>
 </nav>
 
+<!--
+<script>
+ $(function() {
+        $('#nav li a').click(function() {
+           $('#nav li').removeClass();
+           $($(this).attr('href')).addClass('active');
+        });
+     });
+</script>-->
