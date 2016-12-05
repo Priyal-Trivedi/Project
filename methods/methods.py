@@ -119,3 +119,162 @@ def select_methods_tc(data, user):
     context = Context({})
     select_methods_tc = html_template.render(context)
     return select_methods_tc
+
+
+def conceptual_design_home(data, user):
+    """
+
+    :param data:
+    :param user:
+    :return:
+    """
+
+    html_template = get_template("methods/conceptual_design/conceptual_design.html")
+
+    context = Context({})
+    conceptual_design_html = html_template.render(context)
+    return conceptual_design_html
+
+def conceptual_design_gs(data, user):
+    """
+
+    :param data:
+    :param user:
+    :return:
+    """
+
+    html_template = get_template("methods/conceptual_design/conceptual_design_gs.html")
+
+    context = Context({})
+    conceptual_design_html = html_template.render(context)
+    return conceptual_design_html
+
+
+def conceptual_design_es_ss(data, user):
+    """
+
+    :param data:
+    :param user:
+    :return:
+    """
+
+    html_template = get_template("methods/conceptual_design/conceptual_design_es_ss.html")
+
+    context = Context({})
+    conceptual_design_html = html_template.render(context)
+    return conceptual_design_html
+
+def conceptual_design_gs_ms(data, user):
+    """
+
+    :param data:
+    :param user:
+    :return:
+    """
+
+    html_template = get_template("methods/conceptual_design/conceptual_design_gs_ms.html")
+
+    context = Context({})
+    conceptual_design_html = html_template.render(context)
+    return conceptual_design_html
+
+def conceptual_design_es_ms(data, user):
+    """
+
+    :param data:
+    :param user:
+    :return:
+    """
+
+    html_template = get_template("methods/conceptual_design/conceptual_design_es_ms.html")
+
+    context = Context({})
+    conceptual_design_html = html_template.render(context)
+    return conceptual_design_html
+
+
+def embodiment_design_home(data, user):
+    """
+
+    :param data:
+    :param user:
+    :return:
+    """
+
+    html_template = get_template("methods/embodiment_design/embodiment_design.html")
+
+    context = Context({})
+    conceptual_design_html = html_template.render(context)
+    return conceptual_design_html
+
+def embodiment_design_gs(data, user):
+    """
+
+    :param data:
+    :param user:
+    :return:
+    """
+
+    html_template = get_template("methods/embodiment_design/embodiment_design_gs.html")
+
+    context = Context({})
+    conceptual_design_html = html_template.render(context)
+    return conceptual_design_html
+
+
+def embodiment_design_es_ss(data, user):
+    """
+
+    :param data:
+    :param user:
+    :return:
+    """
+
+    html_template = get_template("methods/embodiment_design/embodiment_design_es_ss.html")
+
+    context = Context({})
+    conceptual_design_html = html_template.render(context)
+    return conceptual_design_html
+
+def embodiment_design_gs_ms(data, user):
+    """
+
+    :param data:
+    :param user:
+    :return:
+    """
+
+    html_template = get_template("methods/embodiment_design/embodiment_design_gs_ms.html")
+
+    context = Context({})
+    conceptual_design_html = html_template.render(context)
+    return conceptual_design_html
+
+def embodiment_design_es_ms(data, user):
+    """
+
+    :param data:
+    :param user:
+    :return:
+    """
+
+    html_template = get_template("methods/embodiment_design/embodiment_design_es_ms.html")
+
+    context = Context({})
+    conceptual_design_html = html_template.render(context)
+    return conceptual_design_html
+
+def detail_design_home(data, user):
+    """
+
+    :param data:
+    :param user:
+    :return:
+    """
+
+    html_template = get_template("methods/detail_design/detail_design.html")
+
+    context = Context({})
+    conceptual_design_html = html_template.render(context)
+    return conceptual_design_html
+

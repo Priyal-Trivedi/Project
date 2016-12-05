@@ -12,9 +12,18 @@
 
 {% endblock %}
 <div class="row">
+<div class="col-md-11">
+<div class="row">
+     <div class="col-lg-11">
+          <h3> Select System Boundary</h3>
+{#         <h4> Design Stage - Task Clarification</h4>#}
 
+         <br>
+          <p>(SSB): Analyse the problem brief to ask these questions: What is allowed to be changed? What is not allowed? </p>
 
- <div class="col-lg-6">
+     </div>
+    </div>
+ <div class="col-md-6">
     <h3> Changes allowed </h3>
      {% if changes_allowed %}
 <textarea rows="10" cols="30" id="changes_allowed" value="{{ changes_allowed }}">
@@ -28,7 +37,7 @@
 
      {% endif %}
     </div>
-    <div class="col-lg-6">
+    <div class="col-md-6">
         <h3> Changes not allowed</h3>
         {% if changes_not_allowed %}
 <textarea rows="10" cols="30" id="changes_not_allowed" value="{{ changes_not_allowed }}">
@@ -48,10 +57,11 @@
 <div class="row">
 
 
-<div class="col-lg-3">
+<div class="col-md-11">
 
     <button type="button" class="btn btn-info" id="save_system_boundary" data-step="1"> Save Changes </button>
 
+</div>
 </div>
 </div>
 

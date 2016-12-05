@@ -103,8 +103,8 @@ def design(request):
                                                        'tbl_scope': user.design_data.tbl_scope.tbl_scope,
                                                        'domain': user.design_data.domain.domain,
                                                        'rendered_content' : context_info_html,
-                                                       'current_step': user.step_reached,
-                                                       'step_info': STEPS_NAME[str(user.step_reached)]
+                                                       'current_step': user.step_reached+1,
+                                                       'step_name': STEPS_NAME[str(user.step_reached)]
                                                        })
 
     else:
@@ -131,7 +131,8 @@ def design(request):
 
                 return render(request, 'design_methods.html', {'problem_type': problem_type,
                                                                'tbl_scope': tbl_scope,
-                                                               'domain': domain, 'current_step':0})
+                                                               'domain': domain, 'current_step': 1,
+                                                               'initial_content': True})
             else:
                 form = DesignChoiceForm()
         else:
@@ -199,8 +200,9 @@ def next_step(request, step_progress=None):
 
             user_obj.step_reached = int(next_step)
             user_obj.save()
-
-            return HttpResponse(json.dumps({"step_info": step_info, 'context_info': context_info}), content_type="application/json")
+            print "current step", next_step
+            return HttpResponse(json.dumps({"current_step": next_step+1, 'context_info': context_info, 'step_name': step_info}),
+                                content_type="application/json")
     else:
         print step_progress
         try:
@@ -337,6 +339,27 @@ def terminology(request):
     """
 
     return render(request, 'terminology.html')
+
+
+def reset(request):
+    """
+
+    :param request:
+    :return:
+    """
+    user =request.user
+    try:
+        indeate_user = IndeateUser.objects.get(username=user.username)
+
+    except Exception as e:
+        print e
+        return HttpResponse(json.dumps({"success": 'False'}), content_type="application/json")
+    else:
+        indeate_user.step_reached=0
+        indeate_user.save()
+        return HttpResponse(json.dumps({"success": 'True'}), content_type="application/json")
+
+
 
 
 def contribute(request):

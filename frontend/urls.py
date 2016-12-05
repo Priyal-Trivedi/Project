@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^indicators_list/$', views.indicators_list),
     url(r'^fetch_lc_phase/$', views.fetch_lc_phase),
     url(r'^contribute/$', views.contribute),
+    url(r'^reset/$', views.reset),
 ]

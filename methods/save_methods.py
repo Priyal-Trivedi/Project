@@ -66,3 +66,70 @@ def save_generate_requirements(data, user):
 
 
 
+def save_sustainability_definitions(data, user):
+    """
+
+    :param data:
+    :param user:
+    :return:
+    """
+
+    definitions = data.getlist('definitions[]')
+
+    for each in definitions:
+        print each
+    return True
+    # try:
+    #     if Generate_Requirements.objects.filter(user=user).count():
+    #         generate_req_obj = Generate_Requirements.objects.get(user=user)
+    #         generate_req_obj.life_cycle_phases = life_cycle_phases
+    #         generate_req_obj.current_systems = current_systems
+    #         generate_req_obj.issues = issues
+    #         generate_req_obj.requirements = requirements
+    #         generate_req_obj.save()
+    #         return True
+    #     else:
+    #         generate_req_obj = Generate_Requirements.objects.create(
+    #             life_cycle_phases=life_cycle_phases, current_systems=current_systems, issues=issues,
+    #             requirements=requirements, user=user)
+    # except Exception as e:
+    #     print e
+    #     return False
+    # else:
+    #     return True
+
+
+
+def save_sustainability_indicators(data, user):
+    """
+
+    :param data:
+    :param user:
+    :return:
+    """
+
+    indicators = data['indicators[]']
+    for each in indicators:
+        print each
+    return True
+    # try:
+    #     if Generate_Requirements.objects.filter(user=user).count():
+    #         generate_req_obj = Generate_Requirements.objects.get(user=user)
+    #         generate_req_obj.life_cycle_phases = life_cycle_phases
+    #         generate_req_obj.current_systems = current_systems
+    #         generate_req_obj.issues = issues
+    #         generate_req_obj.requirements = requirements
+    #         generate_req_obj.save()
+    #         return True
+    #     else:
+    #         generate_req_obj = Generate_Requirements.objects.create(
+    #             life_cycle_phases=life_cycle_phases, current_systems=current_systems, issues=issues,
+    #             requirements=requirements, user=user)
+    # except Exception as e:
+    #     print e
+    #     return False
+    # else:
+    #     return True
+
+
+

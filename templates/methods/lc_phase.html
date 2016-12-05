@@ -48,7 +48,7 @@
 
         {% for method in methods %}
               <tr class="clickable-row" id="{{ method.name }}" data-name="{{ method.name }}">
-     <td> <input type="checkbox" /></td> <td >{{ method.name }}</td>
+     <td> <input type="checkbox" name="type" data-method-name="{{ method.name }}"/></td> <td >{{ method.name }}</td>
   </tr>
 
         {% endfor %}
@@ -65,11 +65,24 @@
                         <h3>Click on any of the methods to know more.</h3>
                     </div>
 
+
+
         </div>
+            <div class="row">
+            <div class="col-lg-offset-9 col-lg-3">
+                <button type="button" class="btn btn-info" id="save_lc_phase" data-step="5"> Save Changes </button>
+
+            </div>
+            </div>
     </div>
+
+
+
 </div>
 
 {% block scripts %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 
 
 
@@ -77,6 +90,11 @@
     <script type="text/javascript">
         $(document).ready(function() {
 
+   $("#save_lc_phase").click(function() {
+
+       alert("Some alert");
+
+   });
 
             $(".clickable-row").click(function() {
                 console.log($(this).data("name"));
@@ -112,11 +130,12 @@
                         }
                     });
 
+            });
 
 
-    });
 
         });
+
     </script>
 
 

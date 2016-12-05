@@ -248,7 +248,7 @@
 
                     <div class= "top">
       <div class="col-lg-12">
-                    <hr>
+                    <br>
   <img id="myImg" src='{% static 'frontend/GEMS.jpg' %}'  alt="GEMS" align="right" width="150" height="100"  >
       <p>
           <!--<a href="#" class="btn btn-default btn-circle " id="btn_0" ></a>-->
@@ -295,12 +295,12 @@
             <div class="col-md-11">
                 <div class="row">
 
-                    {% if step_info %}
-
-                        <div class="col-md-5"> Step Info - <a id="step_info"> </a>{{ step_info }}</div>
+                    {% if current_step %}
+                    <h4 id="step_info"> &nbsp;  &nbsp; Step - {{ current_step }} </h4>
                     {% else %}
-                        <div class="col-md-5"> Step Info - <a id="step_info"> </a></div>
+                        <h4 id="step_info"> </h4> | <h4 id="step_name"> </h4>
                     {% endif %}
+
                 </div>
 
             <div id="rendered_content">
@@ -313,7 +313,15 @@
             </div>
 
                 <div id="content">
+                    {% if initial_content %}
+                    <h3> Design Stage - Task Clarification </h3>
 
+                    <p> This stage begins with the problem brief, and ends with these deliverables:</p>
+                    <ol>
+                    <li> A list of requirements, often qualitative with some understanding of their relative importance, often qualitative;</li>
+                    <li> Some ideas of how to solve the design problem, noted down for further use.</li>
+                        </ol>
+                    {% endif %}
                 </div>
 
 
