@@ -24,7 +24,7 @@ def home(request):
     """
 
     if request.user.is_authenticated():
-        return render(request, 'index.html')
+        return render(request, 'home.html')
     else:
         return render(request, 'userauth/login.html')
 

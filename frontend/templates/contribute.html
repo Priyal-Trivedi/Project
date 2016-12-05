@@ -4,20 +4,292 @@
 
 {% block content %}
 
+<html>
 
-    <div class="container">
+<head>
+    <title>Contributor Dashboard</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head
+         content must come *after* these tags -->
 
-        <div class="row">
+    <!-- Bootstrap -->
+    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="styles/bootstrap-social.css" rel="stylesheet">
+    <link href="styles/mystyles.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 
-            <div class="col-md-offset-3 col-md-6">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
 
-                <p> What do you wish to contribute ? Eh ?
-                </p>
-            </div>
+<body>
+    <div class="form-group">
 
+
+        <div class="container">
+
+            <form class="well form-horizontal" action=" " method="post" id="contact_form">
+                <fieldset>
+
+                    <!-- Form Name -->
+                    <legend>Contributor Dashboard</legend>
+
+                    <!-- Text input-->
+
+
+
+
+                    <div>
+                        <label class="col-md-4 control-label">Contribution:</label>
+                        <span class="col-md-7">
+                          <input type="radio">
+                          <label>Definition</label>
+                          <input type="radio">
+                          <label>Method</label>
+                          <input type="radio">
+                          <label>Indicator</label>
+                        </span>
+                    </div>
+
+                    <div>
+                        <label class="col-md-4 control-label">Problem Type:</label>
+
+                        <span class="col-md-7">
+
+                        <input type="checkbox">
+                        <label>Product</label>
+
+                        <input type="checkbox">
+                        <label>Manufacturing System</label>
+
+                        <input type="checkbox">
+                        <label>Service</label>
+
+
+
+                    </div>
+
+
+                    <div>
+                        <label class="col-md-4 control-label">Triple Bottom Line Scope:</label>
+                        <span class="col-md-7">
+                        <input type="checkbox">
+                        <label>Environment</label>
+                        <input type="checkbox">
+                        <label>Economy</label>
+                        <input type="checkbox">
+                        <label>Society</label>
+                            </span>
+                    </div>
+
+                    <div>
+                        <label class="col-md-4 control-label">Design Stage:</label>
+                           <span class="col-md-7">
+                        <input type="checkbox">
+                        <label>Task Clarification</label>
+                        <input type="checkbox">
+                        <label>Conceptual Design</label>
+                        <input type="checkbox">
+                        <label>Embodiment Design</label>
+                        <input type="checkbox">
+                        <label>Detail Design</label>
+                               </span>
+                    </div>
+
+
+                    <div>
+                        <label class="col-md-4 control-label">Activity:</label>
+                    <span class="col-md-7" >
+                        <input type="radio">
+                        <label>Generate</label>
+                        <input type="radio">
+                        <label>Evaluate</label>
+                        <input type="radio">
+                        <label>Modify</label>
+                        <input type="radio">
+                        <label>Select</label>
+                        </span>
+                    </div>
+
+
+                    <div>
+                        <label class="col-md-4 control-label">Life Cycle Phases:</label>
+                        <span class="col-md-7">
+                        <input type="checkbox">
+                        <label>Material</label>
+                        <input type="checkbox">
+                        <label>Production</label>
+                        <input type="checkbox">
+                        <label>Distribution</label>
+                        <input type="checkbox">
+                        <label>Use</label>
+                        <input type="checkbox">
+                        <label>After use</label>
+                            </span>
+                    </div>
+
+                    <div>
+                        <label class="col-md-4 control-label">Prerequisite:</label>
+                          <input type="text" style="margin-left:18px;">
+                          <span class="col-md-7"></span>
+                    </div>
+
+                    <div>
+                        <label class="col-md-4 control-label">Time Scale:</label>
+                        <span class="col-md-7">
+                        <input type="radio">
+                        <label>Minutes</label>
+                        <input type="radio">
+                        <label>Hours</label>
+                        <input type="radio">
+                        <label>Days</label>
+                        <input type="radio">
+                        <label>Weeks</label>
+                            </span>
+                    </div>
+
+                     <div>
+                        <label class="col-md-4 control-label">Description:</label>
+                          <input type="text" style="margin-left:18px;width:400px;">
+                          <span class="col-md-7"></span>
+                    </div>
+                    <div>
+                        <label class="col-md-4 control-label">Input:</label>
+                        <input type="text" style="margin-left:18px;width:400px;">
+                        <span class="col-md-7"></span>
+                    </div>
+                    <div>
+                        <label class="col-md-4 control-label">Procedure:</label>
+                        <input type="text" style="margin-left:18px;width:400px;">
+                        <span class="col-md-7"></span>
+                    </div>
+                    <div>
+                        <label class="col-md-4 control-label">Output:</label>
+                        <input type="text" style="margin-left:18px;width:400px;">
+                        <span class="col-md-7"></span>
+                    </div>
+                    <div>
+                        <label class="col-md-4 control-label">Key Benifits:</label>
+                        <input type="text" style="margin-left:18px;width:400px;">
+                        <span class="col-md-7"></span>
+                    </div>
+                    <div>
+                        <label class="col-md-4 control-label">Shortcomings:</label>
+                        <input type="text" style="margin-left:18px;width:400px;">
+                        <span class="col-md-7"></span>
+                    </div>
+                    <div>
+                        <label class="col-md-4 control-label">Example:</label>
+                        <input type="text" style="margin-left:18px;width:400px;">
+                        <span class="col-md-7"></span>
+                    </div>
+                    <div>
+                        <label class="col-md-4 control-label">External links:</label>
+                        <input type="text" style="margin-left:18px;width:400px;">
+                        <span class="col-md-7"></span>
+                    </div>
+                    <div>
+                        <label class="col-md-4 control-label">Sources:</label>
+                        <input type="text" style="margin-left:18px;width:400px;">
+                        <span class="col-md-7"></span>
+                    </div>
+
+<legend>Personal Information</legend>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-7 control-label">E-Mail</label>
+                        <div class="col-md-7 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                <input name="email" placeholder="E-Mail Address" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Text input-->
+
+                    <div class="form-group">
+                        <label class="col-md-7 control-label">Phone #</label>
+                        <div class="col-md-7 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                <input name="phone" placeholder="(845)555-1212" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+
+                    <div class="form-group">
+                        <label class="col-md-7 control-label">Address</label>
+                        <div class="col-md-7 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                <input name="address" placeholder="Address" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+
+                    <div class="form-group">
+                        <label class="col-md-7 control-label">City</label>
+                        <div class="col-md-7 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                <input name="city" placeholder="city" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Select Basic -->
+
+                    <div class="form-group">
+                        <label class="col-md-7 control-label">State</label>
+                        <div class="col-md-7 selectContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                <input name="state" placeholder="state" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+
+                    <div class="form-group">
+                        <label class="col-md-7 control-label">Zip Code</label>
+                        <div class="col-md-7 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                <input name="zip" placeholder="Zip Code" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-7 control-label"></label>
+                        <div class="col-md-7">
+                            <button type="submit" class="btn btn-warning">Save <span class="glyphicon glyphicon-send"></span></button>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
         </div>
-
-
     </div>
+    <!-- /.container -->
+
+</body>
+
+</html>
 
 {% endblock %}
