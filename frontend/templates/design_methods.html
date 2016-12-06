@@ -254,17 +254,17 @@
 
 
        <div class= "heading">
-<div class="row" style="margin-left:40px;">
-  <div class="col-sm-4 "  align="right" style="margin-top:25px;">|--------------Task Clarification-----------| </div>
-  <div class="col-sm-2" style="margin-top:25px;margin-left:10px;">|---Conceptual Design--|</div>
-  <div class="col-sm-4" align="left" style="margin-top:25px;margin-left:24px;">|--------Embodiment Design---------|</div>
+<div class="row">
+  <div class="col-sm-4" align="right">|--------Task Clarification-----------| </div>
+  <div class="col-sm-2">|----Conceptual Design---|</div>
+  <div class="col-sm-6" align="left">|---------Embodiment Design-----------|</div>
 </div>
   <div class= "top">
-  <img id="myImg" src='{% static 'frontend/GEMS.jpg' %}'  alt="GEMS" align="right" width="180" hspace="20" height="120" style="border:1px solid #336666" >
+  <img id="myImg" src='{% static 'frontend/GEMS.jpg' %}'  alt="GEMS" align="right" width="200" hspace="20" height="150" style="border:1px solid #336666" >
 
           <!--<a href="#" class="btn btn-default btn-circle " id="btn_0" ></a>-->
-         <img src='{% static 'frontend/GEMS_2.png' %}' align="left" width="80" height="80" hspace="20"  id="gems" data-name="gems"  >
-          <a href="#" class="btn btn-sq btn-info" style="background:#336666;margin-left:35px;margin-top:15px;" id="btn_1_big" >1</a>
+         <img src='{% static 'frontend/gems_icon.png' %}' align="left" width="75" height="75" hspace="20" vspace="5" id="gems" data-name="gems"  >
+          <a href="#" class="btn btn-sq btn-info" style="background:#336666;margin-left:0px;margin-top:15px;" id="btn_1_big" >1</a>
           <a href="#" class="btn btn-primary" style="background:#336666;margin-top:15px;" id="btn_2">2</a>
           <a href="#" class="btn btn-primary" style="background:#336666;margin-top:15px;"id="btn_3">3</a>
           <a href="#" class="btn btn-primary" style="background:#336666;margin-top:15px;"id="btn_4">4</a>
@@ -318,12 +318,16 @@
                     {% else %}
                         <h4 id="step_info"> </h4> | <h4 id="step_name"> </h4>
                     {% endif %}
+                </div>
 
+            <div id="rendered_content">
                 {% if rendered_content %}
+
                         {{ rendered_content }}
+
                 {% endif %}
 
-                </div>
+            </div>
 
 
 
