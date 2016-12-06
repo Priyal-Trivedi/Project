@@ -35,10 +35,14 @@ def data(request):
     :param request:
     :return:
     """
+    user = request.user
+    user = IndeateUser.objects.get(username=user.username)
+    tbl_scope = user.design_data.tbl_scope.tbl_scope
+    domain = user.design_data.domain.domain
+    problem_type = user.design_data.problem_type
 
 
-
-    return render(request, 'data.html')
+    return render(request, 'data.html', {"tbl_scope": tbl_scope, "domain": domain, "problem_type": problem_type})
 
 @csrf_exempt
 def save_data(request):
