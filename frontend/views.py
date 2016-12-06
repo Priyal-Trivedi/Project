@@ -77,6 +77,14 @@ def save_methods(request):
             user= request.user
             user = IndeateUser.objects.get(username=user.username)
             user_progress = user.step_reached
+
+            # Before saving check if the method already exists.
+
+            # If any of the user methods already contains the method to be saved, do not save again.
+
+
+
+
             user_method = UserMethods.objects.create(user=user, step=user_progress)
             for each_method in methods_list:
                 try:
@@ -105,11 +113,16 @@ def fetch_data(request):
 
     if request.POST or request.is_ajax():
         request_parameters = request.POST
-        data_save_step = int(request_parameters['step'][0])
+        data_save_step = request_parameters['step']
+        data_save_step = int(str(data_save_step))
+        print type(data_save_step)
         print request.user
         print type(request.user)
+        print data_save_step
+        print GET_METHODS_DATA[data_save_step]
         user = IndeateUser.objects.get(username=request.user.username)
-        html = GET_METHODS_DATA[data_save_step](request_parameters, user)
+        html = GET_METHODS_DATA[data_save_step](request_parameters, user, data_save_step)
+
         return HttpResponse(json.dumps({"success": "True", 'html': html}), content_type="application/json")
 
     return render(request, 'data.html')
@@ -137,7 +150,7 @@ def design(request):
                                                        'tbl_scope': user.design_data.tbl_scope.tbl_scope,
                                                        'domain': user.design_data.domain.domain,
                                                        'rendered_content' : context_info_html,
-                                                       'current_step': user.step_reached+1,
+                                                       'current_step': user.step_reached,
                                                        'step_name': STEPS_NAME[str(user.step_reached)]
                                                        })
 
@@ -235,7 +248,7 @@ def next_step(request, step_progress=None):
             user_obj.step_reached = int(next_step)
             user_obj.save()
             print "current step", next_step
-            return HttpResponse(json.dumps({"current_step": next_step+1, 'context_info': context_info, 'step_name': step_info}),
+            return HttpResponse(json.dumps({"current_step": next_step, 'context_info': context_info, 'step_name': step_info}),
                                 content_type="application/json")
     else:
         print step_progress

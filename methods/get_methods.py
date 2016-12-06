@@ -1,9 +1,10 @@
 from django.template import Context
 from django.template.loader import get_template
 
-from models import System_Boundary, Generate_Requirements
+from models import System_Boundary, Generate_Requirements, UserMethods
 
-def get_system_boundary(data, user):
+
+def get_system_boundary(data, user, step):
     """
     Form the HTML context and then send it over as per sustainability definitions.
 
@@ -30,7 +31,7 @@ def get_system_boundary(data, user):
 
 
 
-def get_generate_requirements(data, user):
+def get_generate_requirements(data, user, step):
     """
 
     :param data:
@@ -57,7 +58,7 @@ def get_generate_requirements(data, user):
     return generate_requirements_html
 
 
-def get_sustainability_definitions(data, user):
+def get_sustainability_definitions(data, user, step):
     """
 
     :param data:
@@ -77,6 +78,41 @@ def get_sustainability_definitions(data, user):
         context = Context({ 'lc_phase': lc_phase, 'issues': issues, 'current_systems': current_systems,
                             'requirements': requirements})
     else:
+        context = Context({})
+
+
+    generate_requirements_html = html_template.render(context)
+    return generate_requirements_html
+
+
+def get_conceptual_design_methods_data(data, user, step):
+    """
+
+    :param data:
+    :param user:
+    :return:
+    """
+    print "here", data, user, step
+    html_template = get_template("methods/methods_display.html")
+
+    if UserMethods.objects.filter(user=user).count():
+        user_methods = UserMethods.objects.filter(user=user, step=step)
+        indeate_methods = []
+        for each in user_methods:
+            methods = each.methods.all()
+            indeate_methods.extend(methods)
+
+        print indeate_methods
+
+        design_stage = ""
+        if step >= 8 and step <= 12:
+            design_stage = "Conceptual Design"
+        elif step >= 13:
+            design_stage = "Embodiment Design"
+
+        context = Context({ 'methods': indeate_methods, 'design_stage': design_stage})
+    else:
+        print "No details for this user."
         context = Context({})
 
 

@@ -57,5 +57,13 @@ SAVE_STEPS_METHODS = {
 GET_METHODS_DATA = {
     1: get_system_boundary,
     2 : get_generate_requirements,
-    3 : get_sustainability_definitions
+    3 : get_sustainability_definitions,
+    8 : get_conceptual_design_methods_data,
+    9 : get_conceptual_design_methods_data,
+    10 : get_conceptual_design_methods_data,
+    11 : get_conceptual_design_methods_data,
+    13 : get_conceptual_design_methods_data,
+    14 : get_conceptual_design_methods_data,
+    15 : get_conceptual_design_methods_data,
+    16 : get_conceptual_design_methods_data,
 }

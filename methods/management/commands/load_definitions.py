@@ -31,14 +31,20 @@ def fetch_tbl_scopes(tbl_scopes):
     if tbl_scopes is not np.nan:
 
         tbl_scopes = tbl_scopes.split(",")
+        print tbl_scopes
         tbl_scope_objects = []
         for each in tbl_scopes:
             each = each.replace(" ", "")
-            tbl_scope_object = fetch_tbl_scope(each)
-            if tbl_scope_object is not None and tbl_scope_object not in tbl_scope_objects:
-                tbl_scope_objects.append(tbl_scope_object)
-            else:
+            try:
+                tbl_scope_object = fetch_tbl_scope(each)
+            except Exception as e:
+                print e
                 pass
+            else:
+                if tbl_scope_object is not None and tbl_scope_object not in tbl_scope_objects:
+                    tbl_scope_objects.append(tbl_scope_object)
+                else:
+                    pass
         return tbl_scope_objects
     else:
         return None

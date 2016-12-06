@@ -26,15 +26,13 @@ class Command(BaseCommand):
 
         df = pd.read_csv("methodsall.csv")
 
-        for i in range(0,len(df.index)):
+        for i in range(0, len(df.index)):
             row = df.loc[i].to_dict()
-            # Colums are row['<column >']
-            # name
 
             data_dict = {}
             data_dict['name'] = row['Method']
             data_dict['problem'] = row['Problem']
-            data_dict['tbl_scope'] = fetch_tbl_scopes(row['TBL'])[0] if fetch_tbl_scopes(row['TBL']) is not None else None
+
             data_dict['stage'] = row['Stage']
             data_dict['lcp'] = row['LCP']
             data_dict['activity'] = row['Activity']
@@ -51,6 +49,16 @@ class Command(BaseCommand):
             data_dict['external_link'] = row['External']
             data_dict['sources'] = row['Sources']
 
+            tbl = fetch_tbl_scopes(row['TBL'])
+            if tbl is not None:
+                if len(tbl) > 0:
+                    data_dict['tbl_scope']=tbl[0]
+                else:
+                    data_dict['tbl_scope']= None
+            else:
+                data_dict['tbl_scope'] = None
+            from django.db import connection
+            connection.connection.text_factory = lambda x: unicode(x, "utf-8", "ignore")
 
             Methods.objects.create(**data_dict)
 
