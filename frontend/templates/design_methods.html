@@ -30,7 +30,7 @@
              background-color: #E5E4DF;
             }
 .top_head
-{background-color: #ffffff;
+{background-color: #E5E4DF;
             min-height:60px;
             }
                     .form
@@ -40,7 +40,7 @@
 
             }
             .top{
-          background-color: #ffffff;
+          background-color: #E5E4DF;
             min-height:100px;
 
             }
@@ -280,7 +280,7 @@
           <a href="#" class="btn btn-primary" style="background:#336666;margin-top:15px;" >14</a>
           <a href="#" class="btn btn-primary" style="background:#336666;margin-top:15px;" >15</a>
           <a href="#" class="btn btn-primary" style="background:#336666;margin-top:15px;" >16</a>
-          <a href="#" class="btn btn-sq btn-info" style="background:#336666;margin-top:15px;" ><i class="fa fa-5x"></i>18 </a>
+          <a href="#" class="btn btn-sq btn-info" style="background:#336666;margin-top:15px;" ><i class="fa fa-5x" style="text-align:left; padding-top: 1px;"></i>17 </a>
             <a href="#" id="next_step" onclick="next_steps('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', '{{ current_step }}')">
                 <span  class="glyphicon glyphicon-menu-right  "  style="font-size:1.9em;margin-top=50px;" >  </span> </a>
 
@@ -310,16 +310,14 @@
             </div>
 
 
-            <div class="col-md-11" >
-
+            <div class="col-md-11">
                 <div class="row">
 
                     {% if current_step %}
-                        <h4 id="step_info" vspace = "10" style="margin-left: 17px"> Step:{{current_step }} </h4>
+                    <h4 id="step_info" vspace = "10"> Step:{{current_step }} </h4>
                     {% else %}
                         <h4 id="step_info"> </h4> | <h4 id="step_name"> </h4>
                     {% endif %}
-
                 </div>
 
             <div id="rendered_content">
@@ -330,6 +328,8 @@
                 {% endif %}
 
             </div>
+
+
 
                 <div id="content">
                     {% if initial_content %}
@@ -343,6 +343,8 @@
                     {% endif %}
                 </div>
 
+
+
             </div>
 
         </div>
@@ -354,8 +356,8 @@
 {% block scripts%}
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"> </script>
 
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"> </script>
 <script type="text/javascript" src={% static 'frontend/js/frontend.js' %}></script>
 <script type="text/javascript" src={% static 'frontend/js/hover.js' %}></script>
 
