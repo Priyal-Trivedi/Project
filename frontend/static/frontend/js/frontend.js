@@ -4,19 +4,6 @@
 
 console.log("I'm called.");
 
-
-$("#btn_1_big").click(function() {
-  alert( "First big button is clicked." );
-});
-
-$("#btn_2").click(function() {
-  alert( "Button with id btn_2 is clicked." );
-});
-
-$("#btn_3").click(function() {
-  alert( "Button with id btn_3 is clicked." );
-});
-
 function next_steps(domain, tbl_scope, problem_type) {
 
 
@@ -77,9 +64,6 @@ function lc_phase(domain, tbl_scope, problem_type, lc_phase) {
           console.log("Success", data["current_step"]);
 
             $("#content").html(data["html"]);
-
-
-
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log("Failed");
