@@ -28,7 +28,8 @@ class Command(BaseCommand):
 
         for i in range(0,len(df.index)):
             row = df.loc[i].to_dict()
-
+            # Colums are row['<column >']
+            # name
 
             data_dict = {}
             data_dict['name'] = row['Method']
