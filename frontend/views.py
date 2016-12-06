@@ -15,7 +15,7 @@ from forms import DOMAIN_CHOICES, PROBLEM_TYPE_CHOICES, TBL_CHOICES
 from methods.models import Definitions, Methods
 from methods.models import Indicators
 from userauth.models import IndeateUser
-
+from django.db.models import Q
 def home(request):
     """
 
@@ -308,18 +308,52 @@ def fetch_lc_phase(request):
     :param request:
     :return:
     """
+
+    steps_gems_mapping = {8:['Generate', 'Select'], 9:['Evaluate', 'Select'], 10:['Generate', 'Select', 'Modify'],
+                          11:['Evaluate', 'Select', 'Modify'], 13:['Generate', 'Select'], 14:['Evaluate', 'Select'],
+                          15:['Generate', 'Select', 'Modify'],
+                          16:['Evaluate', 'Select', 'Modify'] }
+
+    # Step 12 is starting of 'Embodiment Design'
     if request.GET or request.is_ajax():
         req_params = dict(request.GET)
         print req_params
-        tbl_scope = req_params['tbl_scope'][0]
-        domain = req_params['domain'][0]
-        problem_type = req_params['problem_type'][0]
-        # lc_phase = req_params['lc_phase'][0e]
-        methods = Methods.objects.filter(tbl_scope__tbl_scope=tbl_scope, lcp="All")
-        print methods
+        user = request.user
+        user = IndeateUser.objects.get(username=user.username)
+        user_progress = user.step_reached
+
+        print user_progress
+
+        lc_phase = req_params['lc_phase'][0]
+        total_methods = []
+
+        # all_methods = Methods.objects.filter(Q(lcp__exact='All'))
+        # print all_methods
+        #
+        # lc_phase_methods = Methods.objects.filter(lcp=lc_phase)
+        # print lc_phase_methods
+        #
+
+
+        activity_to_check = steps_gems_mapping[user_progress]
+        gems_methods = []
+        for each_activity_check in activity_to_check:
+            if user_progress > 13:
+                methods = Methods.objects.filter(activity__contains=each_activity_check, stage__contains='bodiment', lcp__contains=lc_phase)
+            else:
+                methods = Methods.objects.filter(activity__contains=each_activity_check, stage__contains='onceptual', lcp__contains=lc_phase)
+            print methods
+            gems_methods.extend(methods)
+
+
+        print gems_methods
+
+        for method in gems_methods:
+            print method.name
+
         html_template = get_template("methods/lc_phase.html")
 
-        context = Context({"methods": methods})
+        context = Context({"methods": set(gems_methods)})
         sustainability_indicators_html = html_template.render(context)
 
         return HttpResponse(json.dumps({"html": sustainability_indicators_html}), content_type="application/json")

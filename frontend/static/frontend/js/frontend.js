@@ -60,9 +60,8 @@ function lc_phase(domain, tbl_scope, problem_type, lc_phase) {
 
 
   var url = '/fetch_lc_phase/';
-
-
-  data = { 'domain': domain, 'tbl_scope': tbl_scope, 'problem_type': problem_type, 'lc_phase': lc_phase };
+    var step = $('#step_info').val();
+  data = { 'domain': domain, 'tbl_scope': tbl_scope, 'problem_type': problem_type, 'lc_phase': lc_phase, 'step': step };
 
     $.ajax({
         url: url,
@@ -97,7 +96,7 @@ function lc_phase(domain, tbl_scope, problem_type, lc_phase) {
 
     <!-- Initialize the plugin: -->
 
-        $(document).ready(function() {
+        // $(document).ready(function() {
 
 
             $("#save_system_boundary").click(function() {
@@ -355,7 +354,7 @@ $("input:checkbox[name=type]:checked").each(function(){
 
 
 
-        });
+        // });
 
 
 

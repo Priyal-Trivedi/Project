@@ -15,6 +15,7 @@
 <div class="row">
 
 
+
     <div class="row">
 
         <div class="col-md-8">
@@ -48,7 +49,7 @@
 
         {% for method in methods %}
               <tr class="clickable-row" id="{{ method.name }}" data-name="{{ method.name }}">
-     <td> <input type="checkbox" name="type" data-method-name="{{ method.name }}"/></td> <td >{{ method.name }}</td>
+     <td> <input type="checkbox" name="type" data-method="{{ method.name }}"/></td> <td >{{ method.name }}</td>
   </tr>
 
         {% endfor %}
@@ -93,6 +94,45 @@
    $("#save_lc_phase").click(function() {
 
        alert("Some alert");
+       var defs_array = new Array();
+
+
+        $("input:checkbox[name=type]:checked").each(function(){
+            defs_array.push($(this).data("method"));
+        });
+
+        console.log(defs_array);
+
+       var url = '/save_data/';
+                  data = {'method': $(this).data("name")};
+
+                    $.ajax({
+                        url: url,
+                        crossDomain: true,
+                        type: 'GET',
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        dataType: 'json',
+                        data: data,
+                        beforeSend: function(jqXHR, settings) {
+
+                        },
+                        success: function(data, textStatus, jqXHR) {
+                          console.log("Success", data);
+
+                            $("#input_output_procedure_content").html(data["html"]);
+
+                         $('#methods_table').DataTable();
+
+
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log("Failed");
+                        },
+                        complete: function(jqXHR, textStatus) {
+                            console.log("Completed")
+
+                        }
+                    });
 
    });
 
