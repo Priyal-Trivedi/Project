@@ -114,6 +114,24 @@ class Generate_Requirements(models.Model):
     user = models.ForeignKey('userauth.IndeateUser')
 
 
+class User_Sustainability_Definitions(models.Model):
+    """
+
+    """
+
+    definitions = models.ManyToManyField(Definitions)
+    user = models.ForeignKey('userauth.IndeateUser')
+
+
+class User_Sustainability_Indicators(models.Model):
+    """
+
+    """
+
+    definitions = models.ManyToManyField(Indicators)
+    user = models.ForeignKey('userauth.IndeateUser')
+
+
 class UserMethods(models.Model):
     """
 

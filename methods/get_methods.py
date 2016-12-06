@@ -1,7 +1,7 @@
 from django.template import Context
 from django.template.loader import get_template
 
-from models import System_Boundary, Generate_Requirements, UserMethods
+from models import System_Boundary, Generate_Requirements, UserMethods, User_Sustainability_Definitions, User_Sustainability_Indicators
 
 
 def get_system_boundary(data, user, step):
@@ -20,7 +20,7 @@ def get_system_boundary(data, user, step):
         changes_allowed = sys_bound.changes_allowed
         changes_not_allowed = sys_bound.changes_not_allowed
 
-        context = Context({'changes_allowed': changes_allowed, 'changes_not_allowed': changes_not_allowed
+        context = Context({'changes_allowed': changes_allowed, 'changes_not_allowed': changes_not_allowed, 'display_only': True
                            })
     else:
         context = Context({})
@@ -49,7 +49,7 @@ def get_generate_requirements(data, user, step):
         requirements = gr_obj.requirements
         print "Sending better context GRQ"
         context = Context({ 'lc_phase': lc_phase, 'issues': issues, 'current_systems': current_systems,
-                            'requirements': requirements})
+                            'requirements': requirements, 'display_only': True})
     else:
         context = Context({})
 
@@ -59,6 +59,33 @@ def get_generate_requirements(data, user, step):
 
 
 def get_sustainability_definitions(data, user, step):
+    """
+
+    :param data:
+    :param user:
+    :return:
+    """
+
+    html_template = get_template("methods/sustainability_definitions.html")
+
+    if User_Sustainability_Definitions.objects.filter(user=user).count():
+
+        # We might want to create just one object per user and keep adding definitiosn to the same object for the user. Maybe.
+        user_def_objs = User_Sustainability_Definitions.objects.filter(user=user)
+        definitions = []
+        for user_def_obj in user_def_objs:
+            definitions.extend(user_def_obj.definitions.all())
+
+        list_of_def_names = [definition.name for definition in definitions]
+        context = Context({ 'names': list_of_def_names, 'display_only': True})
+    else:
+        context = Context({})
+
+    def_html = html_template.render(context)
+    return def_html
+
+
+def get_sustainability_indicators(data, user, step):
     """
 
     :param data:

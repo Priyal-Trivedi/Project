@@ -54,15 +54,13 @@
 
 </div>
 <br/>
-<div class="row">
-
-
-<div class="col-md-11">
-
-    <button type="button" class="btn btn-info" id="save_system_boundary" data-step="1"> Save Changes </button>
-
-</div>
-</div>
+{% if not display_only %}
+    <div class="row">
+            <div class="col-md-11">
+                <button type="button" class="btn btn-info" id="save_system_boundary" data-step="1"> Save Changes </button>
+            </div>
+    </div>
+{% endif %}
 </div>
 
 {% block scripts %}

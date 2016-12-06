@@ -1,4 +1,5 @@
-from models import System_Boundary, Generate_Requirements
+from models import System_Boundary, Generate_Requirements, Definitions, User_Sustainability_Definitions, User_Sustainability_Indicators
+
 
 def save_system_boundary(data, user):
     """
@@ -109,29 +110,19 @@ def save_sustainability_definitions(data, user):
     """
 
     definitions = data.getlist('definitions[]')
+    if len(definitions):
+        try:
 
-    for each in definitions:
-        print each
-    return True
-    # try:
-    #     if Generate_Requirements.objects.filter(user=user).count():
-    #         generate_req_obj = Generate_Requirements.objects.get(user=user)
-    #         generate_req_obj.life_cycle_phases = life_cycle_phases
-    #         generate_req_obj.current_systems = current_systems
-    #         generate_req_obj.issues = issues
-    #         generate_req_obj.requirements = requirements
-    #         generate_req_obj.save()
-    #         return True
-    #     else:
-    #         generate_req_obj = Generate_Requirements.objects.create(
-    #             life_cycle_phases=life_cycle_phases, current_systems=current_systems, issues=issues,
-    #             requirements=requirements, user=user)
-    # except Exception as e:
-    #     print e
-    #     return False
-    # else:
-    #     return True
-
+            user_sus_def = User_Sustainability_Definitions.objects.create(user=user)
+            for each in definitions:
+                definition = Definitions.objects.get(name=each)
+                user_sus_def.definitions.add(definition)
+        except Exception as e:
+            print e
+            return False
+        else:
+            user_sus_def.save()
+            return True
 
 
 def save_sustainability_indicators(data, user):
@@ -145,25 +136,17 @@ def save_sustainability_indicators(data, user):
     indicators = data['indicators[]']
     for each in indicators:
         print each
-    return True
-    # try:
-    #     if Generate_Requirements.objects.filter(user=user).count():
-    #         generate_req_obj = Generate_Requirements.objects.get(user=user)
-    #         generate_req_obj.life_cycle_phases = life_cycle_phases
-    #         generate_req_obj.current_systems = current_systems
-    #         generate_req_obj.issues = issues
-    #         generate_req_obj.requirements = requirements
-    #         generate_req_obj.save()
-    #         return True
-    #     else:
-    #         generate_req_obj = Generate_Requirements.objects.create(
-    #             life_cycle_phases=life_cycle_phases, current_systems=current_systems, issues=issues,
-    #             requirements=requirements, user=user)
-    # except Exception as e:
-    #     print e
-    #     return False
-    # else:
-    #     return True
 
+    if len(indicators):
+        try:
 
-
+            user_sus_def = User_Sustainability_Indicators.objects.create(user=user)
+            for each in indicators:
+                definition = Definitions.objects.get(name=each)
+                user_sus_def.add(definition)
+        except Exception as e:
+            print e
+            return False
+        else:
+            user_sus_def.save()
+            return True
