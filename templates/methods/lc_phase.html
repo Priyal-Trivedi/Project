@@ -94,22 +94,22 @@
    $("#save_lc_phase").click(function() {
 
        alert("Some alert");
-       var defs_array = new Array();
+       var methods_array = new Array();
 
 
         $("input:checkbox[name=type]:checked").each(function(){
-            defs_array.push($(this).data("method"));
+            methods_array.push($(this).data("method"));
         });
 
-        console.log(defs_array);
+        console.log(methods_array);
 
-       var url = '/save_data/';
-                  data = {'method': $(this).data("name")};
+       var url = '/save_methods/';
+      data = {'methods[]': methods_array};
 
                     $.ajax({
                         url: url,
                         crossDomain: true,
-                        type: 'GET',
+                        type: 'POST',
                         contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
                         dataType: 'json',
                         data: data,
@@ -119,10 +119,20 @@
                         success: function(data, textStatus, jqXHR) {
                           console.log("Success", data);
 
-                            $("#input_output_procedure_content").html(data["html"]);
 
-                         $('#methods_table').DataTable();
-
+                            if(data['success'] == 'True')
+                            {
+                                Messenger().post({
+  message: "Method saved!",
+  type: "info"
+})
+                            }
+                            else{
+                                Messenger().post({
+  message: data["message"],
+  type: "error"
+})
+                            }
 
                         },
                         error: function(jqXHR, textStatus, errorThrown) {

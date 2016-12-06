@@ -12,7 +12,7 @@ from forms import DesignChoiceForm
 from constants import STEPS_NAME, STEPS_METHODS, SAVE_STEPS_METHODS, GET_METHODS_DATA
 from forms import DOMAIN_CHOICES, PROBLEM_TYPE_CHOICES, TBL_CHOICES
 # Create your views here.
-from methods.models import Definitions, Methods
+from methods.models import Definitions, Methods, UserMethods
 from methods.models import Indicators
 from userauth.models import IndeateUser
 from django.db.models import Q
@@ -59,7 +59,41 @@ def save_data(request):
         else:
             return HttpResponse(json.dumps({"success": "False"}), content_type="application/json")
 
-    return render(request, 'data.html')
+    return render(request, 'data.html')\
+
+@csrf_exempt
+def save_methods(request):
+    """
+
+    :param request:
+    :return:
+    """
+
+    if request.POST or request.is_ajax():
+        request_parameters = request.POST
+        methods_list = request_parameters.getlist('methods[]')
+        if len(methods_list) > 0:
+
+            user= request.user
+            user = IndeateUser.objects.get(username=user.username)
+            user_progress = user.step_reached
+            user_method = UserMethods.objects.create(user=user, step=user_progress)
+            for each_method in methods_list:
+                try:
+                    method = Methods.objects.get(name=each_method)
+                except Exception as e:
+                    print e
+                    pass
+                else:
+                    user_method.methods.add(method)
+            user_method.save()
+
+            return HttpResponse(json.dumps({"success": "True"}), content_type="application/json")
+
+        else:
+            return HttpResponse(json.dumps({"success": "False", "message": "No methods selected to save"}), content_type="application/json")
+
+
 
 @csrf_exempt
 def fetch_data(request):
