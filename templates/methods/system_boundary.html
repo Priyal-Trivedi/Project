@@ -1,19 +1,73 @@
 </html>
 
- <div class="col-lg-6">
-    <h3> Changes allowed </h3>
-<textarea rows="10" cols="30">
-    .
-   </textarea>
 
-    </div>
-    <div class="col-lg-6">
-        <h3> Changes not allowed</h3>
-<textarea rows="10" cols="30">
-    .
-   </textarea>
-
-
-    </div>
 
 </html>
+
+{% load static %}
+{% block stylesheets %}
+    <style xmlns="http://www.w3.org/1999/html">
+
+    </style>
+
+{% endblock %}
+<div class="row">
+<div class="col-md-11">
+<div class="row">
+     <div class="col-lg-11">
+          <h3> Select System Boundary</h3>
+{#         <h4> Design Stage - Task Clarification</h4>#}
+
+         <br>
+          <p>(SSB): Analyse the problem brief to ask these questions: What is allowed to be changed? What is not allowed? </p>
+
+     </div>
+    </div>
+ <div class="col-md-6">
+    <h3> Changes allowed </h3>
+     {% if changes_allowed %}
+<textarea rows="10" cols="30" id="changes_allowed" value="{{ changes_allowed }}">
+    {{ changes_allowed }}
+   </textarea>
+    {% else %}
+
+<textarea rows="10" cols="30" id="changes_allowed" >
+    .
+   </textarea>
+
+     {% endif %}
+    </div>
+    <div class="col-md-6">
+        <h3> Changes not allowed</h3>
+        {% if changes_not_allowed %}
+<textarea rows="10" cols="30" id="changes_not_allowed" value="{{ changes_not_allowed }}">
+    {{ changes_not_allowed }}
+   </textarea>
+
+        {% else %}
+<textarea rows="10" cols="30" id="changes_not_allowed" >
+
+   </textarea>
+    {% endif %}
+
+    </div>
+
+</div>
+<br/>
+<div class="row">
+
+
+<div class="col-md-11">
+
+    <button type="button" class="btn btn-info" id="save_system_boundary" data-step="1"> Save Changes </button>
+
+</div>
+</div>
+</div>
+
+{% block scripts %}
+
+
+
+
+{% endblock %}

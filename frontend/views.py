@@ -9,13 +9,13 @@ from django.template.loader import get_template
 from django.views.decorators.csrf import csrf_exempt
 
 from forms import DesignChoiceForm
-from constants import STEPS_NAME, STEPS_METHODS
+from constants import STEPS_NAME, STEPS_METHODS, SAVE_STEPS_METHODS, GET_METHODS_DATA
 from forms import DOMAIN_CHOICES, PROBLEM_TYPE_CHOICES, TBL_CHOICES
 # Create your views here.
 from methods.models import Definitions, Methods
 from methods.models import Indicators
-
 from userauth.models import IndeateUser
+
 def home(request):
     """
 
@@ -30,9 +30,57 @@ def home(request):
 
 
 def data(request):
-    return render(request, 'index.html')
+    """
 
-@login_required
+    :param request:
+    :return:
+    """
+
+
+
+    return render(request, 'data.html')
+
+@csrf_exempt
+def save_data(request):
+    """
+
+    :param request:
+    :return:
+    """
+
+    if request.POST or request.is_ajax():
+        request_parameters = request.POST
+        data_save_step = int(request_parameters['step'][0])
+        print request.user
+        print type(request.user)
+        user = IndeateUser.objects.get(username=request.user.username)
+        if SAVE_STEPS_METHODS[data_save_step](request_parameters, user):
+            return HttpResponse(json.dumps({"success": "True"}), content_type="application/json")
+        else:
+            return HttpResponse(json.dumps({"success": "False"}), content_type="application/json")
+
+    return render(request, 'data.html')
+
+@csrf_exempt
+def fetch_data(request):
+    """
+
+    :param request:
+    :return:
+    """
+
+    if request.POST or request.is_ajax():
+        request_parameters = request.POST
+        data_save_step = int(request_parameters['step'][0])
+        print request.user
+        print type(request.user)
+        user = IndeateUser.objects.get(username=request.user.username)
+        html = GET_METHODS_DATA[data_save_step](request_parameters, user)
+        return HttpResponse(json.dumps({"success": "True", 'html': html}), content_type="application/json")
+
+    return render(request, 'data.html')
+
+
 def design(request):
     """
     Home for the user to choose domain, tbl_scope
@@ -55,8 +103,8 @@ def design(request):
                                                        'tbl_scope': user.design_data.tbl_scope.tbl_scope,
                                                        'domain': user.design_data.domain.domain,
                                                        'rendered_content' : context_info_html,
-                                                       'current_step': user.step_reached,
-                                                       'step_info': STEPS_NAME[str(user.step_reached)]
+                                                       'current_step': user.step_reached+1,
+                                                       'step_name': STEPS_NAME[str(user.step_reached)]
                                                        })
 
     else:
@@ -83,7 +131,8 @@ def design(request):
 
                 return render(request, 'design_methods.html', {'problem_type': problem_type,
                                                                'tbl_scope': tbl_scope,
-                                                               'domain': domain, 'current_step':0})
+                                                               'domain': domain, 'current_step': 1,
+                                                               'initial_content': True})
             else:
                 form = DesignChoiceForm()
         else:
@@ -140,7 +189,7 @@ def next_step(request, step_progress=None):
 
         try:
             context_info = STEPS_METHODS[str(next_step)]({'step': next_step, 'tbl_scope': tbl_scope, 'domain': domain,
-                                      'problem_type': problem_type})
+                                      'problem_type': problem_type}, user_obj)
         except Exception as e:
             print e
             return HttpResponse(json.dumps({"step_info": step_info, 'status': False}),
@@ -151,14 +200,15 @@ def next_step(request, step_progress=None):
 
             user_obj.step_reached = int(next_step)
             user_obj.save()
-
-            return HttpResponse(json.dumps({"step_info": step_info, 'context_info': context_info}), content_type="application/json")
+            print "current step", next_step
+            return HttpResponse(json.dumps({"current_step": next_step+1, 'context_info': context_info, 'step_name': step_info}),
+                                content_type="application/json")
     else:
         print step_progress
         try:
             context_info = STEPS_METHODS[str(step_progress)]({'step':step_progress, 'tbl_scope':
                 user_data_obj.tbl_scope.tbl_scope, 'domain': user_data_obj.domain.domain,
-                                                              'problem_type': user_data_obj.problem_type})
+                                                              'problem_type': user_data_obj.problem_type}, user_obj)
         except Exception as e:
             print e
             return HttpResponse(json.dumps({"step_info": step_progress, 'status': False}),
@@ -289,6 +339,27 @@ def terminology(request):
     """
 
     return render(request, 'terminology.html')
+
+
+def reset(request):
+    """
+
+    :param request:
+    :return:
+    """
+    user =request.user
+    try:
+        indeate_user = IndeateUser.objects.get(username=user.username)
+
+    except Exception as e:
+        print e
+        return HttpResponse(json.dumps({"success": 'False'}), content_type="application/json")
+    else:
+        indeate_user.step_reached=0
+        indeate_user.save()
+        return HttpResponse(json.dumps({"success": 'True'}), content_type="application/json")
+
+
 
 
 def contribute(request):

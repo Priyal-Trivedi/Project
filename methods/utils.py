@@ -18,7 +18,7 @@ def get_indicators(tbl_scope):
     Based on :tbl_scope, fetch all matching indicators.
     :param problem:
     :param domain:
-    :param tbl_scope:
+    :param tbl_scope:K
     :return:
     """
     indicators = Indicators.objects.filter(tbl_scope__tbl_scope=tbl_scope)

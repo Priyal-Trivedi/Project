@@ -1,46 +1,32 @@
 
 {% load static %}
 {% block stylesheets %}
-    <style>
-    #rcorners2 {
-    border-radius: 25px;
-    border: 2px solid #73AD21;
-    padding: 20px;
-    width: 200px;
-    height: 150px;
-}
-    </style>
-<link rel="stylesheet" src={% static 'css/bootstrap-multiselect.css' %} type="text/css"/>
+
+
 <link rel="stylesheet" src='https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css' type="text/css"/>
 
 {% endblock %}
 <div class="row">
-
+       <div class="col-md-11">
 
     <div class="row">
 
         <div class="col-md-8">
 
+            <h3> Select Sustainability Indicators</h3>
             <p> The chosen sustainability definitions/principles filters the respective sustainability indicators.</p>
         </div>
 
     </div>
 
-    <div class="col-lg-11 rcorners2">
-        <div class="row">
-            <div class="col-lg-8">
-                <h3> Select Sustainability Indicators</h3>
+           <div class="col-lg-11 rcorners2">
 
-            </div>
-        </div>
 
         <div class="row">
             <div class="col-lg-11">
 
-{#                Show buttons with keys#}
-
                 {% for type in types %}
-                   <button type="button" class="btn btn-info" data-type='{{ type }}' data-tbl='{{ tbl_scope }}'>{{ type }}</button> &nbsp;
+                   <button type="button" class="btn btn-info type" data-type='{{ type }}' data-tbl='{{ tbl_scope }}'>{{ type }}</button> &nbsp;
                 {% endfor %}
             <hr>
 
@@ -48,29 +34,43 @@
         </div>
 
     <div class="row">
-    <div class="col-lg-6">
-        <div id="indicators_list">
 
+            <div class="col-lg-6">
+                    <div id="indicators_list">
+
+                    </div>
             </div>
-
-                </div>
 
          <div class="col-lg-6" id="indicator_content">
 
                         <h3>Click on any of the indicators to know more.</h3>
-                    </div>
+         </div>
 
+
+    </div>
+   <div class="row">
+
+            <div class="col-lg-offset-9 col-lg-3">
+
+                <button type="button" class="btn btn-info" id="save_sustainability_indicators" data-step="4"> Save Changes </button>
 
             </div>
+
+
+    </div>
+
         </div>
+    </div>
     </div>
 
 
 {% block scripts %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"> </script>
+<script type="text/javascript">
 
-<script>
-    $(document).ready(function(){
+  $(document).ready(function() {
 
             $("#clickable-row").click(function() {
 
@@ -94,8 +94,6 @@
 
                             $("#indicator_content").html(data["html"]);
 
-
-
                         },
                         error: function(jqXHR, textStatus, errorThrown) {
                             console.log("Failed");
@@ -108,7 +106,7 @@
 
             });
 
-            $(".btn").click(function() {
+            $(".type").click(function() {
 
                 console.log($(this).data("type"));
                 console.log($(this).data("tbl"));
@@ -145,9 +143,11 @@
 
             });
 
+            });
 
 
-});
+
+
 
 </script>
 
