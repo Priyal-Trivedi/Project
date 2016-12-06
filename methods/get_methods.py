@@ -93,17 +93,16 @@ def get_sustainability_indicators(data, user, step):
     :return:
     """
 
-    html_template = get_template("methods/generate_requirements.html")
+    html_template = get_template("methods/indicators_list.html")
 
-    if Generate_Requirements.objects.filter(user=user).count():
-        gr_obj = Generate_Requirements.objects.get(user=user)
-        lc_phase = gr_obj.life_cycle_phases
-        issues = gr_obj.issues
-        current_systems = gr_obj.current_systems
-        requirements = gr_obj.requirements
-        print "Sending better context GRQ"
-        context = Context({ 'lc_phase': lc_phase, 'issues': issues, 'current_systems': current_systems,
-                            'requirements': requirements})
+    if User_Sustainability_Indicators.objects.filter(user=user).count():
+        user_indicator_obj = User_Sustainability_Indicators.objects.filter(user=user)
+        total_indicators = []
+        for each_user_obj in user_indicator_obj:
+            indicators = each_user_obj.definitions.all()
+            total_indicators.extend(indicators)
+
+        context = Context({ 'indicators': total_indicators, 'display_only': True})
     else:
         context = Context({})
 

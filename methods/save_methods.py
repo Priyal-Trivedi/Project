@@ -1,4 +1,5 @@
-from models import System_Boundary, Generate_Requirements, Definitions, User_Sustainability_Definitions, User_Sustainability_Indicators
+from models import System_Boundary, Generate_Requirements, Definitions, User_Sustainability_Definitions, User_Sustainability_Indicators, \
+    Indicators
 
 
 def save_system_boundary(data, user):
@@ -132,8 +133,8 @@ def save_sustainability_indicators(data, user):
     :param user:
     :return:
     """
-
-    indicators = data['indicators[]']
+    print data
+    indicators = data.getlist('indicators[]')
     for each in indicators:
         print each
 
@@ -142,8 +143,8 @@ def save_sustainability_indicators(data, user):
 
             user_sus_def = User_Sustainability_Indicators.objects.create(user=user)
             for each in indicators:
-                definition = Definitions.objects.get(name=each)
-                user_sus_def.add(definition)
+                indicator = Indicators.objects.get(indicator=each)
+                user_sus_def.definitions.add(indicator)
         except Exception as e:
             print e
             return False

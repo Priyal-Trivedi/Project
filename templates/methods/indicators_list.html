@@ -18,7 +18,7 @@
 
         {% for indicator in indicators %}
               <tr class="clickable-row" id="{{ indicator.indicator}}" data-name="{{ indicator.indicator}}">
-     <td> <input type="checkbox" class="clickable-checkbox" data-name="{{ name }}" name="type"  /></td> <td >{{ indicator.indicator}}</td>
+     <td> <input type="checkbox" class="clickable-checkbox" data-name="{{ indicator.indicator }}" name="ind"  /></td> <td >{{ indicator.indicator}}</td>
   </tr>
 
         {% endfor %}
@@ -28,11 +28,14 @@
 </table>
 
 {% block scripts %}
-    <script>
+
+
+
+    <script type="text/javascript">
  $(document).ready(function() {
 
 
-            $("#clickable-row").click(function() {
+            $(".clickable-row").click(function() {
 
                 console.log($(this).data("name"));
 

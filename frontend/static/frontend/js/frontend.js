@@ -145,6 +145,63 @@ function lc_phase(domain, tbl_scope, problem_type, lc_phase) {
 
     });
 
+
+
+                        $("#save_sustainability_indicators").click(function() {
+
+                  var url = '/save_data/';
+                    var indicators_array = new Array();
+
+
+            $("input:checkbox[name=ind]:checked").each(function(){
+                indicators_array.push($(this).data("name"));
+            });
+                console.log(indicators_array);
+                  data = {'step': $(this).data("step"), 'indicators[]': indicators_array};
+
+                    $.ajax({
+                        url: url,
+                        crossDomain: true,
+                        type: 'POST',
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        dataType: 'json',
+                        data: data,
+                        beforeSend: function(jqXHR, settings) {
+
+                        },
+                        success: function(data, textStatus, jqXHR) {
+                          console.log("Success", data);
+
+                            if(data['success'] == 'True')
+                            {
+                                Messenger().post({
+  message: "Data saved for Sustainability Indicators",
+  type: "info"
+})
+                            }
+                            else{
+                                Messenger().post({
+  message: "Some error occured in saving data for Sustainability Indicators",
+  type: "error"
+})
+                            }
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log("Failed");
+                        },
+                        complete: function(jqXHR, textStatus) {
+                            console.log("Completed")
+
+                        }
+                    });
+
+
+
+    });
+
+
+
+
                         $("#save_generate_requirements").click(function() {
 
                   var url = '/save_data/';
@@ -202,7 +259,7 @@ function lc_phase(domain, tbl_scope, problem_type, lc_phase) {
 $("input:checkbox[name=type]:checked").each(function(){
     defs_array.push($(this).data("name"));
 });
-        console.log(defs_array)
+        console.log(defs_array);
                   data = {'step': $(this).data("step"), 'definitions[]': defs_array};
 
                     $.ajax({
@@ -228,59 +285,6 @@ $("input:checkbox[name=type]:checked").each(function(){
                             else{
                                 Messenger().post({
   message: "Some error occured in saving data for Sustainability Definitions",
-  type: "error"
-})
-                            }
-                        },
-                        error: function(jqXHR, textStatus, errorThrown) {
-                            console.log("Failed");
-                        },
-                        complete: function(jqXHR, textStatus) {
-                            console.log("Completed")
-
-                        }
-                    });
-
-
-
-    });
-
-
-                        $("#save_sustainability_indicators").click(function() {
-
-                  var url = '/save_data/';
-                            var defs_array = new Array();
-
-
-$("input:checkbox[name=type]:checked").each(function(){
-    defs_array.push($(this).data("name"));
-});
-        console.log(defs_array);
-                  data = {'step': $(this).data("step"), 'indicators[]': defs_array};
-
-                    $.ajax({
-                        url: url,
-                        crossDomain: true,
-                        type: 'POST',
-                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                        dataType: 'json',
-                        data: data,
-                        beforeSend: function(jqXHR, settings) {
-
-                        },
-                        success: function(data, textStatus, jqXHR) {
-                          console.log("Success", data);
-
-                            if(data['success'] == 'True')
-                            {
-                                Messenger().post({
-  message: "Data saved for Sustainability Indicators",
-  type: "info"
-})
-                            }
-                            else{
-                                Messenger().post({
-  message: "Some error occured in saving data for Sustainability Indicators",
   type: "error"
 })
                             }

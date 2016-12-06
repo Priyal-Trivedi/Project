@@ -322,7 +322,7 @@ def indicators_info(request):
 
         name = req_params['name'][0]
 
-        indicator_object = Indicators.objects.get(name=name)
+        indicator_object = Indicators.objects.get(indicator=name)
 
         html_template = get_template("methods/indicators_info.html")
 
