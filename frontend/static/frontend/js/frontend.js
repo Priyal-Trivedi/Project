@@ -40,7 +40,7 @@ function next_steps(domain, tbl_scope, problem_type) {
             $("#rendered_content").html("");
             $("#content").html(data["context_info"]);
 
-          $("#step_info").html(" &nbsp; &nbsp; Step - " + data["current_step"]);
+          $("#step_info").html("Step - " + data["current_step"]);
           $("#step_name").html(data["step_name"]);
 
         },

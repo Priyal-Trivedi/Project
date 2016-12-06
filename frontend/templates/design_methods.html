@@ -264,7 +264,7 @@
 
           <!--<a href="#" class="btn btn-default btn-circle " id="btn_0" ></a>-->
          <img src='{% static 'frontend/gems_icon.png' %}' align="left" width="75" height="75" hspace="20" vspace="5" id="gems" data-name="gems"  >
-          <a href="#" class="btn btn-sq btn-info" style="background:#336666;margin-left:40px;margin-top:15px;" id="btn_1_big" >1</a>
+          <a href="#" class="btn btn-sq btn-info" style="background:#336666;margin-left:0px;margin-top:15px;" id="btn_1_big" >1</a>
           <a href="#" class="btn btn-primary" style="background:#336666;margin-top:15px;" id="btn_2">2</a>
           <a href="#" class="btn btn-primary" style="background:#336666;margin-top:15px;"id="btn_3">3</a>
           <a href="#" class="btn btn-primary" style="background:#336666;margin-top:15px;"id="btn_4">4</a>
@@ -310,14 +310,16 @@
             </div>
 
 
-            <div class="col-md-11">
+            <div class="col-md-11" >
+
                 <div class="row">
 
                     {% if current_step %}
-                    <h4 id="step_info" vspace = "10"> Step:{{current_step }} </h4>
+                        <h4 id="step_info" vspace = "10" style="margin-left: 17px"> Step:{{current_step }} </h4>
                     {% else %}
                         <h4 id="step_info"> </h4> | <h4 id="step_name"> </h4>
                     {% endif %}
+
                 </div>
 
             <div id="rendered_content">
@@ -328,8 +330,6 @@
                 {% endif %}
 
             </div>
-
-
 
                 <div id="content">
                     {% if initial_content %}
@@ -343,8 +343,6 @@
                     {% endif %}
                 </div>
 
-
-
             </div>
 
         </div>
@@ -356,8 +354,8 @@
 {% block scripts%}
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"> </script>
+
 <script type="text/javascript" src={% static 'frontend/js/frontend.js' %}></script>
 <script type="text/javascript" src={% static 'frontend/js/hover.js' %}></script>
 
