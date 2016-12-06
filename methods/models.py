@@ -112,3 +112,13 @@ class Generate_Requirements(models.Model):
     issues = models.TextField()
     requirements = models.TextField()
     user = models.ForeignKey('userauth.IndeateUser')
+
+
+class UserMethods(models.Model):
+    """
+
+    """
+
+    methods = models.ManyToManyField(Methods)
+    step = models.IntegerField()
+    user = models.ForeignKey('userauth.IndeateUser')

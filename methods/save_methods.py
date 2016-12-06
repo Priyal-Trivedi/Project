@@ -65,6 +65,40 @@ def save_generate_requirements(data, user):
         return True
 
 
+def save_conceptual_design_gs(data, user):
+    """
+
+    :param data:
+    :param user:
+    :return:
+    """
+    print data
+    return True
+
+def save_conceptual_design_es_ss(data, user):
+    """
+
+    :param data:
+    :param user:
+    :return:
+    """
+    return True
+def save_conceptual_design_gs_ms(data, user):
+    """
+
+    :param data:
+    :param user:
+    :return:
+    """
+
+def save_conceptual_design_es_ms(data, user):
+    """
+
+    :param data:
+    :param user:
+    :return:
+    """
+
 
 def save_sustainability_definitions(data, user):
     """

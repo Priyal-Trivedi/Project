@@ -15,6 +15,7 @@
 <div class="row">
 
 
+
     <div class="row">
 
         <div class="col-md-8">
@@ -48,7 +49,7 @@
 
         {% for method in methods %}
               <tr class="clickable-row" id="{{ method.name }}" data-name="{{ method.name }}">
-     <td> <input type="checkbox" name="type" data-method-name="{{ method.name }}"/></td> <td >{{ method.name }}</td>
+     <td> <input type="checkbox" name="type" data-method="{{ method.name }}"/></td> <td >{{ method.name }}</td>
   </tr>
 
         {% endfor %}
@@ -93,6 +94,55 @@
    $("#save_lc_phase").click(function() {
 
        alert("Some alert");
+       var methods_array = new Array();
+
+
+        $("input:checkbox[name=type]:checked").each(function(){
+            methods_array.push($(this).data("method"));
+        });
+
+        console.log(methods_array);
+
+       var url = '/save_methods/';
+      data = {'methods[]': methods_array};
+
+                    $.ajax({
+                        url: url,
+                        crossDomain: true,
+                        type: 'POST',
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        dataType: 'json',
+                        data: data,
+                        beforeSend: function(jqXHR, settings) {
+
+                        },
+                        success: function(data, textStatus, jqXHR) {
+                          console.log("Success", data);
+
+
+                            if(data['success'] == 'True')
+                            {
+                                Messenger().post({
+  message: "Method saved!",
+  type: "info"
+})
+                            }
+                            else{
+                                Messenger().post({
+  message: data["message"],
+  type: "error"
+})
+                            }
+
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log("Failed");
+                        },
+                        complete: function(jqXHR, textStatus) {
+                            console.log("Completed")
+
+                        }
+                    });
 
    });
 
