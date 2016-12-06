@@ -29,8 +29,10 @@
             min-height:30px;
              background-color: #E5E4DF;
             }
-
-
+.top_head
+{background-color: #ffffff;
+            min-height:60px;
+            }
                     .form
             {
            min-height:30px;
@@ -258,11 +260,11 @@
   <div class="col-sm-6" align="left">|---------Embodiment Design-----------|</div>
 </div>
   <div class= "top">
-  <img id="myImg" src='{% static 'frontend/GEMS.jpg' %}'  alt="GEMS" align="right" width="200" height="150" style="border:1px solid #336666" >
+  <img id="myImg" src='{% static 'frontend/GEMS.jpg' %}'  alt="GEMS" align="right" width="200" hspace="20" height="150" style="border:1px solid #336666" >
 
           <!--<a href="#" class="btn btn-default btn-circle " id="btn_0" ></a>-->
-         <img src='{% static 'frontend/gems_icon.png' %}' align="left" width="75" height="75" vspace="10" id="gems" data-name="gems"  >
-          <a href="#" class="btn btn-sq btn-info" style="background:#336666;margin-left:50px;margin-top:15px;" id="btn_1_big" >1</a>
+         <img src='{% static 'frontend/gems_icon.png' %}' align="left" width="75" height="75" hspace="20" vspace="5" id="gems" data-name="gems"  >
+          <a href="#" class="btn btn-sq btn-info" style="background:#336666;margin-left:40px;margin-top:15px;" id="btn_1_big" >1</a>
           <a href="#" class="btn btn-primary" style="background:#336666;margin-top:15px;" id="btn_2">2</a>
           <a href="#" class="btn btn-primary" style="background:#336666;margin-top:15px;"id="btn_3">3</a>
           <a href="#" class="btn btn-primary" style="background:#336666;margin-top:15px;"id="btn_4">4</a>
@@ -281,7 +283,13 @@
           <a href="#" class="btn btn-sq btn-info" style="background:#336666;margin-top:15px;" ><i class="fa fa-5x"></i>18 </a>
             <a href="#" id="next_step" onclick="next_steps('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', '{{ current_step }}')">
                 <span  class="glyphicon glyphicon-menu-right  "  style="font-size:1.9em;margin-top=50px;" >  </span> </a>
-           <p>        SSB GR SDPI E/MR SR  </p>
+
+      <div class="top_head">
+  <div class="col-xs-3 col-xs-offset-1" >SSB GR SDPI E/MR SR </div>
+  <div class="col-xs-3">GS E/SS G/MS E/SS </div>
+  <!--<div class="col-sm-3"> |-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;Embodiment Design-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;|</div>
+          <div class="col-sm-3"> |-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;Embodiment Design-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;|</div>-->
+</div>
 
 
                 </div>
@@ -295,11 +303,7 @@
                      <img src='{% static 'frontend/TRANSPORT.png' %}' align="right" width="60" height="60" vspace="10" id="assembly" data-name="Assembly" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'assembly')"><i class="icon"></i>
                      <img src='{% static 'frontend/USE.png' %}' align="right" width="60" height="60" vspace="10" id="use" data-name="Use" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'use')"><i class="icon"></i>
                      <img src='{% static 'frontend/DISPOSAL.png' %}' align="right" width="60" height="60" vspace="10" id="after_use" data-name="After use" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'after_use')"><i class="icon"></i>
-                    <img src='{% static 'frontend/MATERIAL.png' %}' align="right" width="60" height="60" vspace="10" id="material" data-name="Material" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'Material')"><i class="icon"></i></img>
-                       <img src='{% static 'frontend/MANUFACTURING.png' %}' align="right" width="60" height="60" vspace="10"id="production" data-name="Production" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'Production')"><i class="icon"></i> </img>
-                     <img src='{% static 'frontend/TRANSPORT.png' %}' align="right" width="60" height="60" vspace="10" id="assembly" data-name="Assembly" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'Assembly')"><i class="icon"></i> </img>
-                     <img src='{% static 'frontend/USE.png' %}' align="right" width="60" height="60" vspace="10" id="use" data-name="Use" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'Use')"><i class="icon"></i> </img>
-                     <img src='{% static 'frontend/DISPOSAL.png' %}' align="right" width="60" height="60" vspace="10" id="after_use" data-name="After use" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'After Use')"><i class="icon"></i> </img>
+
 
         </dl>
                 </div>
@@ -310,25 +314,22 @@
                 <div class="row">
 
                     {% if current_step %}
-                    <h4 id="step_info"> &nbsp;  &nbsp; Step - {{ current_step }} </h4>
+                    <h4 id="step_info" vspace = "10"> Step:{{current_step }} </h4>
                     {% else %}
                         <h4 id="step_info"> </h4> | <h4 id="step_name"> </h4>
                     {% endif %}
 
-                </div>
-
-            <div id="rendered_content">
                 {% if rendered_content %}
-
                         {{ rendered_content }}
-
                 {% endif %}
 
-            </div>
+                </div>
+
+
 
                 <div id="content">
                     {% if initial_content %}
-                    <h3> Design Stage - Task Clarification </h3>
+                    <h4> Design Stage - Task Clarification </h4>
 
                     <p> This stage begins with the problem brief, and ends with these deliverables:</p>
                     <ol>
