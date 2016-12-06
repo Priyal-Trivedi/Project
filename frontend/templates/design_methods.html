@@ -15,7 +15,6 @@
  #container {
     position:relative;
     float:right;
-
     background-color: red;
 }
             #myImg{
@@ -39,7 +38,7 @@
             }
             .top{
           background-color: #ffffff;
-            min-height:120px;
+            min-height:100px;
 
             }
 
@@ -250,13 +249,18 @@
                 <div id="caption"></div>
                 </div>
 
-                    <div class= "top">
-      <div class="col-lg-12">
-                    <br>
-  <img id="myImg" src='{% static 'frontend/GEMS.jpg' %}'  alt="GEMS" align="right" width="200" height="150"  >
-      <p>
+
+       <div class= "heading">
+<div class="row">
+  <div class="col-sm-4" align="right">|--------Task Clarification-----------| </div>
+  <div class="col-sm-2">|----Conceptual Design---|</div>
+  <div class="col-sm-6" align="left">|---------Embodiment Design-----------|</div>
+</div>
+  <div class= "top">
+  <img id="myImg" src='{% static 'frontend/GEMS.jpg' %}'  alt="GEMS" align="right" width="200" height="150" style="border:1px solid #336666" >
+
           <!--<a href="#" class="btn btn-default btn-circle " id="btn_0" ></a>-->
-         <img src='{% static 'frontend/gems_icon.png' %}' align="left" width="60" height="60" vspace="10" id="gems" data-name="gems" > </img>
+         <img src='{% static 'frontend/gems_icon.png' %}' align="left" width="75" height="75" vspace="10" id="gems" data-name="gems"  >
           <a href="#" class="btn btn-sq btn-info" style="background:#336666;margin-left:50px;margin-top:15px;" id="btn_1_big" >1</a>
           <a href="#" class="btn btn-primary" style="background:#336666;margin-top:15px;" id="btn_2">2</a>
           <a href="#" class="btn btn-primary" style="background:#336666;margin-top:15px;"id="btn_3">3</a>
@@ -273,11 +277,11 @@
           <a href="#" class="btn btn-primary" style="background:#336666;margin-top:15px;" >14</a>
           <a href="#" class="btn btn-primary" style="background:#336666;margin-top:15px;" >15</a>
           <a href="#" class="btn btn-primary" style="background:#336666;margin-top:15px;" >16</a>
-          <a href="#" class="btn btn-sq btn-info" style="background:#336666;margin-top:15px;" ><i class="fa fa-5x"></i><br/>18 <br></a>
+          <a href="#" class="btn btn-sq btn-info" style="background:#336666;margin-top:15px;" ><i class="fa fa-5x"></i>18 </a>
             <a href="#" id="next_step" onclick="next_steps('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', '{{ current_step }}')">
-                <span  class="glyphicon glyphicon-menu-right icon-shift-up "  style="font-size:1.9em;margin-top=50px;" >  </span> </a>
+                <span  class="glyphicon glyphicon-menu-right  "  style="font-size:1.9em;margin-top=50px;" >  </span> </a>
            <p>        SSB GR SDPI E/MR SR  </p>
-            </p>
+
 
                 </div>
 </div>
@@ -286,11 +290,11 @@
 
                 <div class="along-side">
                    <dl class="list-icons">
-                    <img src='{% static 'frontend/MATERIAL.png' %}' align="right" width="60" height="60" vspace="10" id="material" data-name="Material" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'material')"><i class="icon"></i></img>
-                       <img src='{% static 'frontend/MANUFACTURING.png' %}' align="right" width="60" height="60" vspace="10"id="production" data-name="Production" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'production')"><i class="icon"></i> </img>
-                     <img src='{% static 'frontend/TRANSPORT.png' %}' align="right" width="60" height="60" vspace="10" id="assembly" data-name="Assembly" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'assembly')"><i class="icon"></i> </img>
-                     <img src='{% static 'frontend/USE.png' %}' align="right" width="60" height="60" vspace="10" id="use" data-name="Use" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'use')"><i class="icon"></i> </img>
-                     <img src='{% static 'frontend/DISPOSAL.png' %}' align="right" width="60" height="60" vspace="10" id="after_use" data-name="After use" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'after_use')"><i class="icon"></i> </img>
+                    <img src='{% static 'frontend/MATERIAL.png' %}' align="right" width="60" height="60" vspace="10" id="material" data-name="Material" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'material')"><i class="icon"></i>
+                       <img src='{% static 'frontend/MANUFACTURING.png' %}' align="right" width="60" height="60" vspace="10"id="production" data-name="Production" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'production')"><i class="icon"></i>
+                     <img src='{% static 'frontend/TRANSPORT.png' %}' align="right" width="60" height="60" vspace="10" id="assembly" data-name="Assembly" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'assembly')"><i class="icon"></i>
+                     <img src='{% static 'frontend/USE.png' %}' align="right" width="60" height="60" vspace="10" id="use" data-name="Use" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'use')"><i class="icon"></i>
+                     <img src='{% static 'frontend/DISPOSAL.png' %}' align="right" width="60" height="60" vspace="10" id="after_use" data-name="After use" onclick="lc_phase('{{ domain }}','{{ tbl_scope }}', '{{ problem_type }}', 'after_use')"><i class="icon"></i>
 
         </dl>
                 </div>
