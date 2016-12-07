@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^definitions_info/$', views.definitions_info),
     url(r'^indicators_info/$', views.indicators_info),
     url(r'^methods_info/$', views.methods_info),
+    url(r'^methods_detail/$', views.methods_detail),
     url(r'^indicators_list/$', views.indicators_list),
     url(r'^fetch_lc_phase/$', views.fetch_lc_phase),
     url(r'^contribute/$', views.contribute),
