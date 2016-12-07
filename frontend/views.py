@@ -303,7 +303,10 @@ def indicators_list(request):
 
         type = req_params['type'][0]
         tbl_scope = req_params['tbl_scope'][0]
-        indicator_objects = Indicators.objects.filter(type=type, tbl_scope__tbl_scope=tbl_scope)
+        if tbl_scope == 'Generic':
+            indicator_objects = Indicators.objects.filter(type=type)
+        else:
+            indicator_objects = Indicators.objects.filter(type=type, tbl_scope__tbl_scope=tbl_scope)
 
         html_template = get_template("methods/indicators_list.html")
 

@@ -33,7 +33,11 @@ def get_indicator_type(tbl_scope):
     :param tbl_scope:
     :return:
     """
-    indicators = Indicators.objects.filter(tbl_scope__tbl_scope=tbl_scope)
+    if tbl_scope == 'Generic':
+        indicators = Indicators.objects.all()
+    else:
+        indicators = Indicators.objects.filter(tbl_scope__tbl_scope=tbl_scope)
+
     types = [indicator.type for indicator in indicators]
 
     return set(types)
