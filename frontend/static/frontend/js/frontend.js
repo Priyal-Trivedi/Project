@@ -28,6 +28,10 @@ function next_steps(domain, tbl_scope, problem_type) {
             $("#content").html(data["context_info"]);
 
           $("#step_info").html("Step - " + data["current_step"]);
+
+          $("#btn_"+String(parseInt(data["current_step"]-1))).html(String(parseInt(data["current_step"]-1)));
+          $("#btn_"+data["current_step"]).html("-" + data["current_step"]);
+
           $("#step_name").html(data["step_name"]);
 
         },
