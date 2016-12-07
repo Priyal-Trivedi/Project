@@ -118,6 +118,11 @@ def get_conceptual_design_methods_data(data, user, step):
     :param user:
     :return:
     """
+    steps_gems_mapping = {5:['Evaluate', 'Modify'], 6:['Select'],8:['Generate', 'Select'], 9:['Evaluate', 'Select'], 10:['Generate', 'Select', 'Modify'],
+                          11:['Evaluate', 'Select', 'Modify'], 13:['Generate', 'Select'], 14:['Evaluate', 'Select'],
+                          15:['Generate', 'Select', 'Modify'],
+                          16:['Evaluate', 'Select', 'Modify'] }
+
     print "here", data, user, step
     html_template = get_template("methods/methods_display.html")
 
@@ -136,7 +141,9 @@ def get_conceptual_design_methods_data(data, user, step):
         elif step < 7:
             design_stage = "Task Clarification"
 
-        context = Context({ 'methods': indeate_methods, 'design_stage': design_stage})
+        activity = ",".join(steps_gems_mapping[step])
+
+        context = Context({ 'methods': indeate_methods, 'design_stage': design_stage, 'activity': activity})
     else:
         print "No details for this user."
         context = Context({})
