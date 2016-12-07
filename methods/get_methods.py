@@ -128,13 +128,13 @@ def get_conceptual_design_methods_data(data, user, step):
             methods = each.methods.all()
             indeate_methods.extend(methods)
 
-        print indeate_methods
-
         design_stage = ""
         if step >= 8 and step <= 12:
             design_stage = "Conceptual Design"
         elif step >= 13:
             design_stage = "Embodiment Design"
+        elif step < 7:
+            design_stage = "Task Clarification"
 
         context = Context({ 'methods': indeate_methods, 'design_stage': design_stage})
     else:
