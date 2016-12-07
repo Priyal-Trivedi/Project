@@ -108,13 +108,27 @@ def select_sustainability_indicators(data, user):
     return sustainability_indicators_html
 
 
-def select_methods_tc(data, user):
+
+def select_methods_tc_er_mr(data, user):
     """
 
     :param data:
     :return:
     """
-    html_template = get_template("methods/select_methods.html")
+    html_template = get_template("methods/task_clarification/task_clarification_er_mr.html")
+
+    context = Context({})
+    select_methods_tc = html_template.render(context)
+    return select_methods_tc
+
+
+def select_methods_tc_s(data, user):
+    """
+
+    :param data:
+    :return:
+    """
+    html_template = get_template("methods/task_clarification/task_clarification_s.html")
 
     context = Context({})
     select_methods_tc = html_template.render(context)

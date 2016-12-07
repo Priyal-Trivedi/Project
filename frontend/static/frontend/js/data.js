@@ -68,10 +68,10 @@ $("#btn_4").click(function() {
 
 });
 $("#btn_5").click(function() {
-  alert( "Fetched and display saved data for Selected Sustainability Definitions");
+  fetch_data(5);
 });
 $("#btn_6").click(function() {
-  alert( "Fetched and display saved data for Selected Sustainability Definitions");
+    fetch_data(6);
 });
 
 $("#btn_8").click(function() {

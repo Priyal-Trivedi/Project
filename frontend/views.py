@@ -383,7 +383,7 @@ def fetch_lc_phase(request):
     :return:
     """
 
-    steps_gems_mapping = {8:['Generate', 'Select'], 9:['Evaluate', 'Select'], 10:['Generate', 'Select', 'Modify'],
+    steps_gems_mapping = {5:['Evaluate', 'Modify'], 6:['Select'],8:['Generate', 'Select'], 9:['Evaluate', 'Select'], 10:['Generate', 'Select', 'Modify'],
                           11:['Evaluate', 'Select', 'Modify'], 13:['Generate', 'Select'], 14:['Evaluate', 'Select'],
                           15:['Generate', 'Select', 'Modify'],
                           16:['Evaluate', 'Select', 'Modify'] }
@@ -414,6 +414,11 @@ def fetch_lc_phase(request):
             if user_progress > 13:
                 methods = Methods.objects.filter(activity__contains=each_activity_check, stage__contains='bodiment', lcp__contains=lc_phase)
                 all_methods = Methods.objects.filter(lcp__contains="All", activity__contains=each_activity_check, stage__contains='bodiment')
+            elif user_progress == 5 or user_progress == 6:
+                methods = Methods.objects.filter(activity__contains=each_activity_check, stage__contains='clarifi', lcp__contains=lc_phase)
+                all_methods = Methods.objects.filter(lcp__contains="All", activity__contains=each_activity_check,
+                                                 stage__contains='clarifi')
+
             else:
                 methods = Methods.objects.filter(activity__contains=each_activity_check, stage__contains='onceptual', lcp__contains=lc_phase)
                 all_methods = Methods.objects.filter(lcp__contains="All", activity__contains=each_activity_check, stage__contains='onceptual')
