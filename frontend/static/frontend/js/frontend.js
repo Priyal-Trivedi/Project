@@ -30,7 +30,8 @@ function next_steps(domain, tbl_scope, problem_type) {
           $("#step_info").html("Step - " + data["current_step"]);
 
           $("#btn_"+String(parseInt(data["current_step"]-1))).html(String(parseInt(data["current_step"]-1)));
-          $("#btn_"+data["current_step"]).html("-" + data["current_step"]);
+
+          $("#btn_"+data["current_step"]).css("background-color","#ff9933");
 
           $("#step_name").html(data["step_name"]);
 

@@ -58,7 +58,10 @@ button {
     cursor: pointer;
     width: 100%;
 }
-
+.heading
+{
+align:centre;
+}
 .cancelbtn {
     width: auto;
     padding: 10px 18px;
@@ -100,10 +103,12 @@ span.psw {
 
     <div>
 
+
+            <h1 align:"centre">InDeaTe Tool </h1> </div></div>
         <form method="post" action="/login/" class="login" autocomplete="off">
             {% csrf_token %}
             <div class="container">
-                <div class="col-lg-8">
+                <div class="col-sm-4">
             <p>
                 <label for="username">Username:</label>
                 <input type="text" name="username" id="login" value="">
