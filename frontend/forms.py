@@ -15,5 +15,5 @@ class DesignChoiceForm(forms.Form):
     """
 
     problem_type = forms.ChoiceField(widget=forms.RadioSelect, choices=PROBLEM_TYPE_CHOICES)
-    triple_bottom_line = forms.ChoiceField(widget=forms.RadioSelect, choices=TBL_CHOICES)
-    domain = forms.ChoiceField(widget=forms.RadioSelect, choices=DOMAIN_CHOICES)
+    triple_bottom_line = forms.ModelChoiceField(queryset=TBL_Scope.objects.all(), widget=forms.RadioSelect, empty_label=None)
+    domain = forms.ModelChoiceField(queryset=Domain.objects.all(), widget=forms.RadioSelect, empty_label=None)

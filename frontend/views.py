@@ -168,14 +168,16 @@ def design(request):
                 # ...
                 # redirect to a new URL:
                 request_parameters = dict(request.POST)
+
                 problem_type = request_parameters.get('problem_type')[0]
                 problem_type = dict(PROBLEM_TYPE_CHOICES).get(problem_type)
+                from methods.models import TBL_Scope, Domain
 
-                tbl_scope = request_parameters.get('triple_bottom_line')[0]
-                tbl_scope = dict(TBL_CHOICES).get(tbl_scope)
+                tbl_scope_ = request_parameters.get('triple_bottom_line')[0]
+                tbl_scope = TBL_Scope.objects.get(pk=tbl_scope_).tbl_scope
 
                 domain = request_parameters.get('domain')[0]
-                domain = dict(DOMAIN_CHOICES).get(domain)
+                domain = Domain.objects.get(pk=domain).domain
 
                 # Save the chosen tbl_scope, domain and problem type in user data inforamtion
                 user.save_user_progress(tbl_scope, domain, problem_type)
@@ -405,7 +407,6 @@ def fetch_lc_phase(request):
         # lc_phase_methods = Methods.objects.filter(lcp=lc_phase)
         # print lc_phase_methods
         #
-
 
         activity_to_check = steps_gems_mapping[user_progress]
         gems_methods = []
