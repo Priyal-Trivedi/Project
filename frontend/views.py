@@ -352,6 +352,27 @@ def methods_info(request):
 
         return HttpResponse(json.dumps({"html": methods_info_html}), content_type="application/json")
 
+# def methods_detail(request):
+#     """
+#
+#     :param request:
+#     :return:
+#     """
+#
+#     print dict(request.GET)
+#     if request.GET or request.is_ajax():
+#         req_params = dict(request.GET)
+#         name = req_params['method'][0]
+#
+#         method_object = Methods.objects.get(name=name)
+#
+#         html_template = get_template("methods/methods_info.html")
+#
+#         context = Context({"method": method_object})
+#         methods_info_html = html_template.render(context)
+#
+#         return HttpResponse(json.dumps({"html": "<h3> Some details. </h3>"}), content_type="application/json")
+
 
 def fetch_lc_phase(request):
     """
@@ -391,18 +412,16 @@ def fetch_lc_phase(request):
         for each_activity_check in activity_to_check:
             if user_progress > 13:
                 methods = Methods.objects.filter(activity__contains=each_activity_check, stage__contains='bodiment', lcp__contains=lc_phase)
+                all_methods = Methods.objects.filter(lcp__contains="All", activity__contains=each_activity_check, stage__contains='bodiment')
             else:
                 methods = Methods.objects.filter(activity__contains=each_activity_check, stage__contains='onceptual', lcp__contains=lc_phase)
-            print methods
+                all_methods = Methods.objects.filter(lcp__contains="All", activity__contains=each_activity_check, stage__contains='onceptual')
+
             gems_methods.extend(methods)
-
-
-        print gems_methods
-
-        for method in gems_methods:
-            print method.name
+            gems_methods.extend(all_methods)
 
         html_template = get_template("methods/lc_phase.html")
+
 
         context = Context({"methods": set(gems_methods)})
         sustainability_indicators_html = html_template.render(context)
