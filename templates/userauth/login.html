@@ -24,17 +24,7 @@
 <body>
 <div class="contents">
 
-{#    {% if nav_bar_logo %}#}
-{#        <a class="navbar-brand" href="/">#}
-{##}
-{#            <img class="logo" src="/media/{{ nav_bar_logo }}">#}
-{#        </a>#}
-{#    {% else %}#}
-{#        <a class="navbar-brand" href="/">#}
-{##}
-{#            <img class="logo" src={% static "frontend/img/zenatix-logo-whitepng" %}>#}
-{#        </a>#}
-{#    {% endif %}#}
+
     <style>
 form {
     border: 3px solid #f1f1f1;
@@ -104,7 +94,7 @@ span.psw {
     <div>
 
 
-            <h1 align:"centre">InDeaTe Tool </h1> </div></div>
+            <h1 >InDeaTe Tool </h1> </div></div>
         <form method="post" action="/login/" class="login" autocomplete="off">
             {% csrf_token %}
             <div class="container">

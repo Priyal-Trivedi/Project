@@ -40,13 +40,13 @@
 
     </style>
 {% endblock %}
-<div class="row">
+<!--<div class="row">
 
 <div class="container">
 
 
             <div class="row">
-                <div class="col-md-5 text-center">
+                <div class="col-md-3 text-center" >
                     <div class="box">
                         <div class="box-content">
                             <h4 class="tag-title">{{ indicator.indicator }}</h4>
@@ -73,8 +73,19 @@
 	</div>
 </div>
 
-</div>
+</div>-->
 
+ <div class="panel panel-default">
+  <div class="panel-heading">{{ indicator.indicator }}</div>
+  <div class="panel-body">
+
+            <p><strong>Definition</strong>:{{ indicator.tbl_scope.tbl_scope}}</p><br />
+            <p><strong>Type </strong>:{{ indicator.type}}</p><br />
+            <p><strong>Tags </strong>: {{ indicator.tags}}</p><br />
+
+
+  </div>
+       </div>
 {% block scripts %}
 
 

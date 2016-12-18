@@ -3,7 +3,14 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+<style>
 
+.borderexample
+{
+border-width:1px;
+ border-style:ridge;
+border-color: #D3D3D3;
+} </style>
 
     <div class="container">
 
@@ -20,8 +27,17 @@
             </div>
 
 <div class= " col-sm-9 ">
-                         <img src='{% static 'frontend/GEMS.jpg' %}' align = "centre"  width="650" height="500" hspace="10"  id="gems" data-name="gems"  >
+
+                      <img src='{% static 'frontend/GEMS.jpg' %}' align = "centre"  width="650" height="487" hspace="4"  id="gems" data-name="gems"  >
+<br>
+    <br>
+    <p class="borderexample">
+        <strong>The InDeaTe template (shown above) is a generic template of design where lifecycle thinking is imbibed during the design process by creating opportunities,represented by intersections(above),
+           for improving the overall sustainability context</strong>
+    </p>
+
             </div>
+
         </div>
 
 

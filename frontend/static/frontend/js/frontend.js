@@ -32,6 +32,7 @@ function next_steps(domain, tbl_scope, problem_type) {
           $("#btn_"+String(parseInt(data["current_step"]-1))).html(String(parseInt(data["current_step"]-1)));
 
           $("#btn_"+data["current_step"]).css("background-color","#ff9933");
+                $("#btn_"+String(parseInt(data["current_step"]-1))).css("background-color","#336666");
 
           $("#step_name").html(data["step_name"]);
 
@@ -48,11 +49,27 @@ function next_steps(domain, tbl_scope, problem_type) {
 }
 
 
-function lc_phase(domain, tbl_scope, problem_type, lc_phase) {
-
+function lc_phase(domain, tbl_scope, problem_type, lc_phase ) {
+    $('.selimg').removeClass("cliked");
+    if(lc_phase=='Material'){
+        $('#material').addClass('cliked');
+    }
+    if(lc_phase=='Production'){
+        $('#production').addClass('cliked');
+    }
+    if(lc_phase=='Assembly'){
+        $('#assembly').addClass('cliked');
+    }
+    if(lc_phase=='Use'){
+        $('#use').addClass('cliked');
+    }
+    if(lc_phase=='After Use'){
+        $('#after_use').addClass('cliked');
+    }
 
   var url = '/fetch_lc_phase/';
     var step = $('#step_info').val();
+
   data = { 'domain': domain, 'tbl_scope': tbl_scope, 'problem_type': problem_type, 'lc_phase': lc_phase, 'step': step };
 
     $.ajax({
