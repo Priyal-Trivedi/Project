@@ -16,6 +16,8 @@ from methods.models import Definitions, Methods, UserMethods
 from methods.models import Indicators
 from userauth.models import IndeateUser
 from django.db.models import Q
+from utils import hard_reset_data
+
 def home(request):
     """
 
@@ -460,16 +462,45 @@ def reset(request):
     :return:
     """
     user =request.user
+
     try:
         indeate_user = IndeateUser.objects.get(username=user.username)
-
     except Exception as e:
         print e
         return HttpResponse(json.dumps({"success": 'False'}), content_type="application/json")
     else:
         indeate_user.step_reached=0
+        indeate_user.design_data.domain = None
+        indeate_user.design_data.tbl_scope = None
+        indeate_user.design_data.problem_type = None
+
         indeate_user.save()
         return HttpResponse(json.dumps({"success": 'True'}), content_type="application/json")
+
+
+def hard_reset(request):
+    """
+
+    :param request:
+    :return:
+    """
+    user =request.user
+
+    try:
+        indeate_user = IndeateUser.objects.get(username=user.username)
+    except Exception as e:
+        print e
+        return HttpResponse(json.dumps({"success": 'False'}), content_type="application/json")
+    else:
+        indeate_user.step_reached=0
+        indeate_user.design_data.domain = None
+        indeate_user.design_data.tbl_scope = None
+        indeate_user.design_data.problem_type = None
+
+        if hard_reset_data(indeate_user):
+            return HttpResponse(json.dumps({"success": 'True'}), content_type="application/json")
+        else:
+            return HttpResponse(json.dumps({"success": 'False'}), content_type="application/json")
 
 
 

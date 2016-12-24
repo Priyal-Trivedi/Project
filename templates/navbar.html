@@ -36,10 +36,10 @@
                      <!-- <li><a href="#">Settings</a></li>#}-->
                         <li><a href="/logout/">Logout</a></li>
 <li><a href="http://www.cpdm.iisc.ernet.in/ideaslab/">IDeaS Lab</a></li>
-                       <!-- <li role="separator" class="divider"></li>-->
-                        <!--<li class="dropdown-header">Nav header</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>-->
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">Reset Options</li>
+                        <li><a href="#" id="soft_reset">Soft Reset</a></li>
+                        <li><a href="#" id="hard_reset">Hard Reset</a></li>
                     </ul>
                 </li>
             </ul>
@@ -49,14 +49,7 @@
 </nav>
 
 
-<!--<script>
- $(function() {
-        $('#nav li a').click(function() {
-           $('#nav li').removeClass();
-           $($(this).attr('href')).addClass('active');
-        });
-     });
-</script>-->
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
 $(function(){
@@ -65,4 +58,102 @@ $(function(){
        $($(this).attr('href')).css("background-color","yellow");
    });
 });
+
+
+   $("#soft_reset").click(function() {
+
+       confirm("You are about to reset your progress ?");
+
+       var url = '/reset/';
+
+                    $.ajax({
+                        url: url,
+                        crossDomain: true,
+                        type: 'GET',
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        dataType: 'json',
+                        data: {},
+                        beforeSend: function(jqXHR, settings) {
+
+                        },
+                        success: function(data, textStatus, jqXHR) {
+                          console.log("Success", data);
+
+                            if(data['success'] == 'True')
+                            {
+                                Messenger().post({
+  message: "Data Reset",
+  type: "info"
+})
+
+                                window.location.replace("/design/");
+                            }
+                            else{
+                                Messenger().post({
+  message: data["message"],
+  type: "error"
+})
+                            }
+
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log("Failed");
+                        },
+                        complete: function(jqXHR, textStatus) {
+                            console.log("Completed")
+
+                        }
+                    });
+
+   });
+
+   $("#hard_reset").click(function() {
+
+       confirm("You are about to reset your progress along with data. This cannot be reverted back ?");
+
+       var url = '/hard_reset/';
+
+                    $.ajax({
+                        url: url,
+                        crossDomain: true,
+                        type: 'GET',
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        dataType: 'json',
+                        data: {},
+                        beforeSend: function(jqXHR, settings) {
+
+                        },
+                        success: function(data, textStatus, jqXHR) {
+                          console.log("Success", data);
+
+                            if(data['success'] == 'True')
+                            {
+                                Messenger().post({
+  message: "Data Reset",
+  type: "info"
+})
+
+                                window.location.replace("/design/");
+                            }
+                            else{
+                                Messenger().post({
+  message: data["message"],
+  type: "error"
+})
+                            }
+
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log("Failed");
+                        },
+                        complete: function(jqXHR, textStatus) {
+                            console.log("Completed")
+
+                        }
+                    });
+
+   });
+
+
+
 </script>
